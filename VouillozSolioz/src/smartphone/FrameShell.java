@@ -1,21 +1,18 @@
 package smartphone;
 
 import javax.swing.JFrame;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import javax.security.auth.Refreshable;
 import javax.swing.*;
 
 public class FrameShell extends JFrame{
-	JPanel pnlHead,pnlScreen,pnlHome;
-	JButton btnHome,btnReturn;
+	private JPanel pnlHead,pnlScreen,pnlHome;
+	private JButton btnHome,btnReturn;
 
-	public FrameShell() throws IOException {
+	public FrameShell() {
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(480, 840);
 	setBackground(Color.black);
@@ -30,7 +27,7 @@ public class FrameShell extends JFrame{
 	pnlHead.setBackground(Color.BLACK);
 	
 	pnlScreen.setPreferredSize(new Dimension(480, 770));
-	pnlScreen.setBackground(Color.RED);
+	//pnlScreen.setBackground(Color.RED);
 	
 	pnlHome.setPreferredSize(new Dimension(480, 80));
 	pnlHome.setBackground(Color.BLACK);
@@ -42,7 +39,20 @@ public class FrameShell extends JFrame{
 	add(BorderLayout.CENTER,pnlScreen);
 	add(BorderLayout.SOUTH,pnlHome);
 	
-	pack();
+
+	}
+
+	public void monstring()
+	{
+		System.out.println("test");
+	}
+	public JPanel getPnlScreen() {
+		return pnlScreen;
+	}
+
+	public void setPnlScreen(JPanel pnlScreen) {
+		this.pnlScreen = pnlScreen;
+		
 	}
 	
 	
