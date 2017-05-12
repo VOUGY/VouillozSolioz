@@ -12,7 +12,8 @@ public class FrameShell extends JFrame{
 	private JPanel pnlHead,pnlScreen,pnlHome;
 	private JButton btnHome,btnReturn;
 
-	public FrameShell() {
+	public FrameShell(JPanel pnlScreen) {
+		this.pnlScreen = pnlScreen;
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(480, 840);
 	setBackground(Color.black);
@@ -52,7 +53,6 @@ public class FrameShell extends JFrame{
 
 	public void setPnlScreen(JPanel pnlScreen) {
 		this.pnlScreen = pnlScreen;
-		
 	}
 	
 	
