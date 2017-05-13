@@ -1,5 +1,6 @@
 package smartphone;
 
+import java.awt.Color;
 import java.io.IOException;
 
 public class Main {
@@ -9,6 +10,7 @@ public class Main {
 		FrameHome frmHome = new FrameHome();
 		FrameShell myShell = new FrameShell(frmHome);
 		myShell.setVisible(true);
+
 	
 	}
 

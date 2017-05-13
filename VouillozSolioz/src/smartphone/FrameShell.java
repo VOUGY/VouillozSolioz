@@ -26,8 +26,7 @@ public class FrameShell extends JFrame{
 	pnlHead.setPreferredSize(new Dimension(480, 30));
 	pnlHead.setBackground(Color.BLACK);
 	
-	pnlScreen.setPreferredSize(new Dimension(480, 770));
-	//pnlScreen.setBackground(Color.RED);
+	
 	
 	pnlHome.setPreferredSize(new Dimension(480, 80));
 	pnlHome.setBackground(Color.BLACK);
@@ -54,7 +53,11 @@ public class FrameShell extends JFrame{
 	}
 
 	public void setPnlScreen(JPanel pnlScreen) {
+		 getContentPane().remove(this.pnlScreen);
+        getContentPane().add(pnlScreen);
+        getContentPane().revalidate();
 		this.pnlScreen = pnlScreen;
+		pack();
 	}
 	
 	
