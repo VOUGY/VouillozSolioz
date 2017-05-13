@@ -19,7 +19,6 @@ public class FrameShell extends JFrame{
 	setBackground(Color.black);
 	
 	pnlHead = new JPanel();
-	pnlScreen = new JPanel();
 	pnlHome = new JPanel();
 	btnHome = new JButton("Home");
 	btnReturn  = new JButton("Return");
@@ -42,7 +41,10 @@ public class FrameShell extends JFrame{
 	
 
 	}
-
+	public void CreateFrame()
+	{
+		
+	}
 	public void monstring()
 	{
 		System.out.println("test");
