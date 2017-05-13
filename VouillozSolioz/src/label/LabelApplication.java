@@ -1,4 +1,4 @@
-package smartphone;
+package label;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -15,18 +15,16 @@ public class LabelApplication extends JLabel {
 	{
 		Dimension mySize = new Dimension(100,100);
 		ImageIcon myImage = new ImageIcon("C:/Users/guill/Desktop/contacts.jpg");
-		myImage.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT);
+	
 		
 		setPreferredSize(mySize);
-		setMaximumSize(mySize);
-		setMinimumSize(mySize);
-		setSize(mySize);
 		setIcon(myImage);
+		
 		addMouseListener(new myListener());
 	}
 	public class myListener extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
-            System.out.println("Yay you clicked me");
+          //ici lancement des applications 
         }
 	}
 }

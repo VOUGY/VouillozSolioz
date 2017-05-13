@@ -1,4 +1,4 @@
-package smartphone;
+package jpanel;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,12 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class FrameHome extends JPanel {
+import label.LabelApplication;
+
+public class PanelHome extends JPanel {
 
 	 JButton[] tabbtnHome = new JButton[2];
 	LabelApplication monContact[] = new LabelApplication[2];
 	
-	public FrameHome() {
+	public PanelHome() {
 		setPreferredSize(new Dimension(480, 770));
 		setBackground(Color.BLUE);
 		for (int i = 0; i < monContact.length; i++) {

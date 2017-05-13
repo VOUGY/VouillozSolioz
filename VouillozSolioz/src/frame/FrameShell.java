@@ -1,4 +1,4 @@
-package smartphone;
+package frame;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -20,6 +20,7 @@ public class FrameShell extends JFrame{
 	
 	pnlHead = new JPanel();
 	pnlHome = new JPanel();
+	
 	btnHome = new JButton("Home");
 	btnReturn  = new JButton("Return");
 	
