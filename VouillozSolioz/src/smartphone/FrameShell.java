@@ -40,14 +40,7 @@ public class FrameShell extends JFrame{
 	
 
 	}
-	public void CreateFrame()
-	{
-		
-	}
-	public void monstring()
-	{
-		System.out.println("test");
-	}
+
 	public JPanel getPnlScreen() {
 		return pnlScreen;
 	}
