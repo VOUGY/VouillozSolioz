@@ -2,6 +2,7 @@ package frame;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -9,18 +10,23 @@ import javax.security.auth.Refreshable;
 import javax.swing.*;
 
 public class FrameShell extends JFrame{
-	private JPanel pnlHead,pnlScreen,pnlHome;
+	private JPanel pnlHead,pnlScreens,pnlHome;
 	private JButton btnHome,btnReturn;
+	CardLayout cldScreen;
+
 
 	public FrameShell(JPanel pnlScreen) {
-		this.pnlScreen = pnlScreen;
+	
+	
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(480, 840);
 	setBackground(Color.black);
 	
 	pnlHead = new JPanel();
 	pnlHome = new JPanel();
+	pnlScreens =new JPanel(new CardLayout());
 	
+	pnlScreens.add(pnlScreen,"home");
 	btnHome = new JButton("Home");
 	btnReturn  = new JButton("Return");
 	
@@ -42,16 +48,14 @@ public class FrameShell extends JFrame{
 
 	}
 
-	public JPanel getPnlScreen() {
-		return pnlScreen;
-	}
 
-	public void setPnlScreen(JPanel pnlScreen) {
-		 getContentPane().remove(this.pnlScreen);
-        getContentPane().add(pnlScreen);
-        getContentPane().revalidate();
-		this.pnlScreen = pnlScreen;
+	public void addPnlScreen(JPanel pnlScreen, String stScreen) {
+		pnlScreens.add(pnlScreen, stScreen);
 		pack();
+	}
+	public void changePnlScreen(String stScreen) {
+		cldScreen = (CardLayout) pnlScreens.getLayout();
+		cldScreen.next(pnlScreens);
 	}
 	
 	
