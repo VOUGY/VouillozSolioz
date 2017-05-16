@@ -27,13 +27,12 @@ public class FrameShell extends JFrame{
 	pnlScreens =new JPanel(new CardLayout());
 	
 	pnlScreens.add(pnlScreen,"home");
+	
 	btnHome = new JButton("Home");
 	btnReturn  = new JButton("Return");
 	
 	pnlHead.setPreferredSize(new Dimension(480, 30));
 	pnlHead.setBackground(Color.BLACK);
-	
-	
 	
 	pnlHome.setPreferredSize(new Dimension(480, 80));
 	pnlHome.setBackground(Color.BLACK);
