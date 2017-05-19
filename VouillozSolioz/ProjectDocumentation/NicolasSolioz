@@ -1,1 +1,29 @@
-sfsf
+Journal de bord
+Nicolas Solioz
+
+12.05.2017
+-------
+
+Création sur papier du design du smartphone.
+Mise au papier des classes et du concept général du smartphone : 
+nous avons décidé que l'application allait fonctionné comme suit : 
+ - Le smartphone est composé de 3 JPanel : l'en-tête, l'écran, et le fond du smartphone. 
+ - L'en-tête ainsi que le fond du smartphone ne changeront pas, elles seront toujours affichés à l'écran
+ - En fonction du choix de l'utilisateur (sélection d'applications), le JPanel de l'écran changera afin d'afficher
+   les applications désirées
+   
+Nous nous sommes réparties les tâches comme suit : On prépare le téléphone de base ensemble, ensuite quand on
+arrive a affiché une autre JPanel depuis l'écran d'accueil on développe chacun notre application de notre côté.
+Nicolas : Gallerie
+Guillaume : Contacts
+
+Création de l'arborescence de base. 
+Création des 3 JPanel de base. 
+
+
+19.05.2017
+-------
+Insertion des images sur les boutons de lancement d'applications sur l'écran d'accueil et sur 
+le bouton "home" au fond du smartphone
+Création de la méthode statique qui permet de changer le Panel de l'écran afin d'afficher les différents
+applications
