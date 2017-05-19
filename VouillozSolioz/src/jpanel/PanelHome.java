@@ -43,6 +43,7 @@ public class PanelHome extends JPanel {
 		
 		System.out.println("Test");
 		revalidate();
+		System.out.println("TEst");
 	}
          
  }
