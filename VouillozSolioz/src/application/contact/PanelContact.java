@@ -5,9 +5,9 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-public class Contact extends JPanel {
+public class PanelContact extends JPanel {
 
-	public Contact ()
+	public PanelContact ()
 	{
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(480, 770));

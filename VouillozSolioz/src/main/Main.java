@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import application.contact.Contact;
+import application.contact.PanelContact;
+import application.contact.PanelContacts;
 import smartphone.FrameShell;
 import application.gallery.PanelGallery;
 import application.home.PanelHome;
@@ -15,7 +17,7 @@ public class Main {
 		
 		// Create panels (one panel per app)
 		PanelHome pnlHome = new PanelHome();
-		Contact pnlContact = new Contact();
+		PanelContacts pnlContacts = new PanelContacts();
 		PanelGallery pnlGallery = new PanelGallery();
 		
 		//Initalize shell of our homescreen
@@ -23,7 +25,7 @@ public class Main {
 		
 		//Add panels (apps) to the shell
 		myShell.addPnlScreen(pnlGallery);
-		myShell.addPnlScreen(pnlContact);
+		myShell.addPnlScreen(pnlContacts);
 	
 		//show smartphone
 		myShell.setVisible(true);
