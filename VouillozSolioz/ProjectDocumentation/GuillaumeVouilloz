@@ -4,6 +4,6 @@ Choix de l'interface de notre smartphone (création d'un modèle sur logiciel)
 19 Mai 2017
 	--	Mise en place du CardLayout pour le changement entre chaque app 
 	--	Création d'une méthode change pnl en static pour le changment dans le panelHome
-	
+	--  Mise en place de différents classes pour c
 20 Mai 2017
  
