@@ -14,7 +14,7 @@ public class LabelApplication extends JLabel {
 	public LabelApplication()
 	{
 		Dimension mySize = new Dimension(100,100);
-		ImageIcon myImage = new ImageIcon("C:/Users/guill/Desktop/contacts.jpg");
+		ImageIcon myImage = new ImageIcon("./image/contacts.jpg");
 	
 		
 		setPreferredSize(mySize);

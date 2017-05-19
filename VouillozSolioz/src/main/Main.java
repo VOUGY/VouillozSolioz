@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import application.PanelHome;
+import application.home.PanelHome;
 import smartphone.FrameShell;
 
 public class Main {
