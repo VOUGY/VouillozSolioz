@@ -33,7 +33,7 @@ public class PanelHome extends JPanel {
 		//Apply contact image to btnContacts
 		try {
 			Image imgContacts;
-			imgContacts = ImageIO.read(getClass().getResource("/image/contacts.jpg"));//path
+			imgContacts = ImageIO.read(getClass().getResource("/icons/contacts.jpg"));//path
 			btnContacts.setIcon(new ImageIcon(imgContacts));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -43,7 +43,7 @@ public class PanelHome extends JPanel {
 		//Apply gallery image to btnGallery
 		try {
 			Image imgGallery;
-			imgGallery = ImageIO.read(getClass().getResource("/image/gallery.png"));//path
+			imgGallery = ImageIO.read(getClass().getResource("/icons/gallery.png"));//path
 			btnGallery.setIcon(new ImageIcon(imgGallery));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -51,7 +51,7 @@ public class PanelHome extends JPanel {
 		}
 
 		setPreferredSize(new Dimension(480, 770));
-		setBackground(Color.BLUE);
+		setBackground(Color.BLACK);
 		
 		add(BorderLayout.NORTH, btnContacts);
 		add(BorderLayout.CENTER, btnGallery);

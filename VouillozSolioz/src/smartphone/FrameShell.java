@@ -22,7 +22,7 @@ public class FrameShell extends JFrame{
 	//Apply image to btnHome
 	try {
 		Image imgHome;
-		imgHome = ImageIO.read(getClass().getResource("/image/home.png"));//path
+		imgHome = ImageIO.read(getClass().getResource("/icons/home.png"));//path
 		btnHome.setIcon(new ImageIcon(imgHome));
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -31,7 +31,6 @@ public class FrameShell extends JFrame{
 	
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(480, 840);
-	setBackground(Color.black);
 	
 	pnlHead = new JPanel(); //en-tête du smartphone
 	pnlHome = new JPanel(); //fond du smartphone avec bouton home
@@ -40,10 +39,10 @@ public class FrameShell extends JFrame{
 	pnlScreens.add(pnlScreen,"home");
 
 	pnlHead.setPreferredSize(new Dimension(480, 30));
-	pnlHead.setBackground(Color.BLACK);
+	pnlHead.setBackground(Color.LIGHT_GRAY);
 	
 	pnlHome.setPreferredSize(new Dimension(480, 80));
-	pnlHome.setBackground(Color.BLACK);
+	pnlHome.setBackground(Color.LIGHT_GRAY);
 	pnlHome.add(btnHome);
 
 	add(BorderLayout.NORTH,pnlHead);
