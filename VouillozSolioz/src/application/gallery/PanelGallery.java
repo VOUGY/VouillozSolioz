@@ -3,6 +3,7 @@ package application.gallery;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,10 +15,15 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class PanelGallery extends JPanel{
 
 	public PanelGallery() {
+		
+		this.setAutoscrolls(true);
+		JScrollPane scrollFrame = new JScrollPane();
+		scrollFrame.setPreferredSize(new Dimension(480, 770));
 		
 		//count the number of images in folder
 		File imageFolder = new File("src/application/gallery/images");
@@ -33,27 +39,20 @@ public class PanelGallery extends JPanel{
 		//loop to fill grid with images
 		for(int i = 0; i<nbImages;i++) 
 		{
-			
-			try {
-				BufferedImage myPicture;
-				myPicture = ImageIO.read(new File("src/application/gallery/images/" + imageFolderString[i]));
-				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-				this.add(picLabel);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+			ImageIcon myPicture = new ImageIcon("src/application/gallery/images/" + imageFolderString[i]);
+			Image myPictureImage = myPicture.getImage();
+			Image myPictureImageResized = myPictureImage.getScaledInstance(300, 240, java.awt.Image.SCALE_SMOOTH);
+			myPicture = new ImageIcon(myPictureImageResized);
+
+			add(new JLabel(myPicture));
 		}
 
 		
 		setPreferredSize(new Dimension(480, 770));
-		setBackground(Color.RED);
+		setBackground(Color.BLACK);
 		revalidate();
 		setVisible(true);
-		
-		
 
-		
 	}
 	
 
