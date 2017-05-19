@@ -23,8 +23,8 @@ public class FrameShell extends JFrame{
 	 * @author guill
 	 * Gestion du changement d'écran
 	 */
-	protected CardLayout cldScreen = new CardLayout();
-	protected JPanel pnlScreens = new JPanel();
+	protected static CardLayout cldScreen = new CardLayout();
+	protected static JPanel pnlScreens = new JPanel();
 	JPanel[] pnlApp = new JPanel[3];
 	protected String[] listContent = {"Home","Gallery","Contact"};
 	protected int indice = 1;
@@ -56,8 +56,7 @@ public class FrameShell extends JFrame{
 	btnReturn  = new JButton("Return");
 	btnHome.addActionListener(new ActionListener(){
 	      public void actionPerformed(ActionEvent event){				
-	    	  cldScreen.next(pnlScreens);
-	         System.out.println("Test");
+	    	  cldScreen.show(pnlScreens, "Home");
 	        }
 	      });
 	
@@ -82,8 +81,8 @@ public class FrameShell extends JFrame{
 		pnlScreens.add(pnlApp[indice], listContent[indice]);
 		indice++;
 	}
-	public void changePnlScreen(String stScreen) {
+	public static void changePnlScreen(String stScreen) {
 		cldScreen = (CardLayout) pnlScreens.getLayout();
-		cldScreen.next(pnlScreens);
+		cldScreen.show(pnlScreens, stScreen);
 	}	
 }

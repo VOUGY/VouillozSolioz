@@ -72,7 +72,7 @@ class ClickContacts implements ActionListener { //evenement si on clique sur le 
 	
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Contacts!"); //test
-
+		FrameShell.changePnlScreen("Contact");
 		//PanelGallerie PanelGallerie = new PanelGallerie();
 		// changePnlScreen(PanelGallerie, "PanelGallerie"); -> il faut faire en sorte d'appeler 
 		// la méthode changePnlScreen qui se trouve dans FrameShell.java
@@ -82,7 +82,7 @@ class ClickContacts implements ActionListener { //evenement si on clique sur le 
 class ClickGallerie implements ActionListener { //evenement si on clique sur le bouton "Gallerie"
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Gallerie!"); //test
+		FrameShell.changePnlScreen("Gallery");
 		
 	}
 }
