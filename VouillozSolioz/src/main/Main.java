@@ -18,12 +18,12 @@ public class Main {
 		PanelGallerie pnlGallery = new PanelGallerie();
 		FrameShell myShell = new FrameShell(frmHome);
 		
+
 		myShell.addPnlScreen(pnlGallery);
 		myShell.addPnlScreen(pnlContact);
 		
 	
-		
-		
+	
 		myShell.setVisible(true);
 
 	
