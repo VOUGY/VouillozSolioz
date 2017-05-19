@@ -4,42 +4,62 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.crypto.spec.SecretKeySpec;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import application.gallery.PanelGallerie;
-import label.LabelApplication;
 
 public class PanelHome extends JPanel {
 
-	 JButton[] tabbtnHome = new JButton[2];
-	LabelApplication monContact[] = new LabelApplication[2];
+	JButton[] tabbtnHome = new JButton[2];
 	
 	public PanelHome() {
 		
-		JButton Contacts = new JButton("Contacts");
-		JButton Gallerie = new JButton("Gallerie");
+		JButton btnContacts = new JButton();
+		JButton btnGallery = new JButton();
 		
+		//applying images to button
+
+		//CONTACTS
+		try {
+			Image imgContacts;
+			imgContacts = ImageIO.read(getClass().getResource("/image/contacts.jpg"));
+			btnContacts.setIcon(new ImageIcon(imgContacts));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//GALLERY
+		try {
+			Image imgGallery;
+			imgGallery = ImageIO.read(getClass().getResource("/image/gallery.png"));
+			btnGallery.setIcon(new ImageIcon(imgGallery));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
 		setPreferredSize(new Dimension(480, 770));
 		setBackground(Color.BLUE);
-		for (int i = 0; i < monContact.length; i++) {
-			monContact[i] = new LabelApplication();
-			
-		}
-		add(monContact[0]);
-		add(monContact[1]);
 		
-		add(BorderLayout.NORTH, Contacts);
-		add(BorderLayout.CENTER, Gallerie);
+		add(BorderLayout.NORTH, btnContacts);
+		add(BorderLayout.CENTER, btnGallery);
 		
-		Contacts.addActionListener(new ClickContacts());
-		Gallerie.addActionListener(new ClickGallerie());
+		btnContacts.addActionListener(new ClickContacts());
+		btnGallery.addActionListener(new ClickGallerie());
 		
 		System.out.println("Test");
 		revalidate();
@@ -55,7 +75,6 @@ class ClickContacts implements ActionListener { //evenement si on clique sur le 
 		PanelGallerie PanelGallerie = new PanelGallerie();
 		// changePnlScreen(PanelGallerie, "PanelGallerie"); -> il faut faire en sorte d'appeler 
 		// la méthode changePnlScreen qui se trouve dans FrameShell.java
-		System.out.println("CA VA MARCHER OU PAS CETTE MERDE DE GITHUB");
 	}
 }
 

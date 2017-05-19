@@ -16,12 +16,9 @@ public class Main {
 		Contact pnlContact = new Contact();
 		FrameShell myShell = new FrameShell(frmHome);
 		
-		myShell.addPnlScreen(frmHome, "Card1");
-		myShell.addPnlScreen(pnlContact, "Card2");
-		
-		
-		
-		
+		//myShell.addPnlScreen(frmHome, "Card1");
+		//myShell.addPnlScreen(pnlContact, "Card2");
+
 		myShell.setVisible(true);
 
 	
