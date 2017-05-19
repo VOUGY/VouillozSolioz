@@ -27,7 +27,6 @@ public class Main {
 	
 		//show smartphone
 		myShell.setVisible(true);
-
 	
 	}
 
