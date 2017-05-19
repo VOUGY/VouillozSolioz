@@ -13,15 +13,20 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		PanelHome frmHome = new PanelHome();
+		
+		// Création de nos panels
+		PanelHome pnlHome = new PanelHome();
 		Contact pnlContact = new Contact();
-		FrameShell myShell = new FrameShell(frmHome);
 		PanelGallerie pnlGallery = new PanelGallerie();
+		
+		//Initialisation de la shell avec pnl d'accueil
+		FrameShell myShell = new FrameShell(pnlHome);
+		
+		// rajout des panels apps
 		myShell.addPnlScreen(pnlGallery);
 		myShell.addPnlScreen(pnlContact);
-		//myShell.addPnlScreen(frmHome, "Card1");
-		//myShell.addPnlScreen(pnlContact, "Card2");
-
+	
+		//affichage de la fenetre
 		myShell.setVisible(true);
 
 	
