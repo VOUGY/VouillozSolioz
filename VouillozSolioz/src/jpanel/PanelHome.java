@@ -55,6 +55,7 @@ class ClickContacts implements ActionListener { //evenement si on clique sur le 
 		PanelGallerie PanelGallerie = new PanelGallerie();
 		// changePnlScreen(PanelGallerie, "PanelGallerie"); -> il faut faire en sorte d'appeler 
 		// la méthode changePnlScreen qui se trouve dans FrameShell.java
+		System.out.println("CA VA MARCHER OU PAS CETTE MERDE DE GITHUB");
 	}
 }
 
