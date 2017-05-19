@@ -53,7 +53,6 @@ public class FrameShell extends JFrame{
 	pnlScreens.setLayout(cldScreen);
 	pnlScreens.add(pnlApp[0],listContent[0]);
 	
-	btnHome = new JButton("Home");
 	btnReturn  = new JButton("Return");
 	btnHome.addActionListener(new ActionListener(){
 	      public void actionPerformed(ActionEvent event){				
