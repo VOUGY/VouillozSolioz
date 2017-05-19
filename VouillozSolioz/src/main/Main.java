@@ -5,10 +5,9 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import application.contact.Contact;
-
-import application.home.PanelHome;
 import smartphone.FrameShell;
 import application.gallery.PanelGallerie;
+import application.home.PanelHome;
 public class Main {
 
 	public static void main(String[] args) {

@@ -23,12 +23,12 @@ public class FrameShell extends JFrame{
 	 * @author guill
 	 * Gestion du changement d'écran
 	 */
-	CardLayout cldScreen = new CardLayout();
-	JPanel pnlScreens = new JPanel();
+	protected CardLayout cldScreen = new CardLayout();
+	protected JPanel pnlScreens = new JPanel();
 	JPanel[] pnlApp = new JPanel[3];
-	String[] listContent = {"Home","Gallery","Contact"};
-	int indice = 1;
-	
+	protected String[] listContent = {"Home","Gallery","Contact"};
+	protected int indice = 1;
+
 	public FrameShell(JPanel pnlScreen) {
 		
 	JButton btnHome = new JButton();

@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.nio.channels.ClosedSelectorException;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
@@ -18,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import application.gallery.PanelGallerie;
+import smartphone.FrameShell;
 
 public class PanelHome extends JPanel {
 
@@ -70,7 +72,8 @@ class ClickContacts implements ActionListener { //evenement si on clique sur le 
 	
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Contacts!"); //test
-		PanelGallerie PanelGallerie = new PanelGallerie();
+
+		//PanelGallerie PanelGallerie = new PanelGallerie();
 		// changePnlScreen(PanelGallerie, "PanelGallerie"); -> il faut faire en sorte d'appeler 
 		// la méthode changePnlScreen qui se trouve dans FrameShell.java
 	}
