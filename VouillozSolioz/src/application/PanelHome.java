@@ -1,4 +1,4 @@
-package jpanel;
+package application;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import gallerie.PanelGallerie;
+import application.gallery.PanelGallerie;
 import label.LabelApplication;
 
 public class PanelHome extends JPanel {

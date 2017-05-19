@@ -1,4 +1,4 @@
-package gallerie;
+package application.gallery;
 
 import java.awt.Color;
 import java.awt.Dimension;

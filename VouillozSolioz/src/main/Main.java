@@ -1,11 +1,11 @@
-package smartphone;
+package main;
 
 import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import frame.FrameShell;
-import jpanel.PanelHome;
+import application.PanelHome;
+import smartphone.FrameShell;
 
 public class Main {
 
