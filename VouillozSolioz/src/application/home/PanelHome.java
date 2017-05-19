@@ -30,27 +30,25 @@ public class PanelHome extends JPanel {
 		
 		//applying images to button
 
-		//CONTACTS
+		//Apply contact image to btnContacts
 		try {
 			Image imgContacts;
-			imgContacts = ImageIO.read(getClass().getResource("/image/contacts.jpg"));
+			imgContacts = ImageIO.read(getClass().getResource("/image/contacts.jpg"));//path
 			btnContacts.setIcon(new ImageIcon(imgContacts));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//GALLERY
+		//Apply gallery image to btnGallery
 		try {
 			Image imgGallery;
-			imgGallery = ImageIO.read(getClass().getResource("/image/gallery.png"));
+			imgGallery = ImageIO.read(getClass().getResource("/image/gallery.png"));//path
 			btnGallery.setIcon(new ImageIcon(imgGallery));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
 		setPreferredSize(new Dimension(480, 770));
 		setBackground(Color.BLUE);

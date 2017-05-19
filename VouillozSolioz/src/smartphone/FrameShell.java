@@ -1,46 +1,51 @@
 package smartphone;
 
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.security.auth.Refreshable;
 import javax.swing.*;
 
 public class FrameShell extends JFrame{
 	private JPanel pnlHead,pnlScreens,pnlHome;
-	private JButton btnHome,btnReturn;
+
 	CardLayout cldScreen;
 
-
 	public FrameShell(JPanel pnlScreen) {
-	
+		
+	JButton btnHome = new JButton();
+	//Apply image to btnHome
+	try {
+		Image imgHome;
+		imgHome = ImageIO.read(getClass().getResource("/image/home.png"));//path
+		btnHome.setIcon(new ImageIcon(imgHome));
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
 	
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(480, 840);
 	setBackground(Color.black);
 	
-	pnlHead = new JPanel();
-	pnlHome = new JPanel();
+	pnlHead = new JPanel(); //en-tête du smartphone
+	pnlHome = new JPanel(); //fond du smartphone avec bouton home
 	pnlScreens =new JPanel(new CardLayout());
 	
 	pnlScreens.add(pnlScreen,"home");
-	
-	btnHome = new JButton("Home");
-	btnReturn  = new JButton("Return");
-	//btnReturn
-	
+
 	pnlHead.setPreferredSize(new Dimension(480, 30));
 	pnlHead.setBackground(Color.BLACK);
 	
 	pnlHome.setPreferredSize(new Dimension(480, 80));
 	pnlHome.setBackground(Color.BLACK);
 	pnlHome.add(btnHome);
-	pnlHome.add(btnReturn);
-	
-	
+
 	add(BorderLayout.NORTH,pnlHead);
 	add(BorderLayout.CENTER,pnlScreen);
 	add(BorderLayout.SOUTH,pnlHome);
