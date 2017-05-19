@@ -15,5 +15,7 @@ public class PanelGallerie extends JPanel{
 		setVisible(true);
 		
 	}
+	
+
 
 }
