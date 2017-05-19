@@ -1,20 +1,32 @@
 package smartphone;
 
-import javax.swing.JFrame;
+import application.gallery.PanelGallerie;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.security.auth.Refreshable;
 import javax.swing.*;
 
 public class FrameShell extends JFrame{
-	private JPanel pnlHead,pnlScreens,pnlHome;
+	private JPanel pnlHead,pnlHome;
 	private JButton btnHome,btnReturn;
-	CardLayout cldScreen;
-
-
+	
+	/**
+	 * @author guill
+	 * Gestion du changement d'écran
+	 */
+	CardLayout cldScreen = new CardLayout();
+	JPanel pnlScreens = new JPanel();
+	JPanel[] pnlApp = new JPanel[3];
+	String[] listContent = {"Home","Gallery","Contact"};
+	int indice = 1;
+	
+	
 	public FrameShell(JPanel pnlScreen) {
 	
 	
@@ -24,13 +36,19 @@ public class FrameShell extends JFrame{
 	
 	pnlHead = new JPanel();
 	pnlHome = new JPanel();
-	pnlScreens =new JPanel(new CardLayout());
+	pnlApp[0] = pnlScreen;
 	
-	pnlScreens.add(pnlScreen,"home");
+	pnlScreens.setLayout(cldScreen);
+	pnlScreens.add(pnlApp[0],listContent[0]);
 	
 	btnHome = new JButton("Home");
 	btnReturn  = new JButton("Return");
-	//btnReturn
+	btnHome.addActionListener(new ActionListener(){
+	      public void actionPerformed(ActionEvent event){				
+	    	  cldScreen.next(pnlScreens);
+	         System.out.println("Test");
+	        }
+	      });
 	
 	pnlHead.setPreferredSize(new Dimension(480, 30));
 	pnlHead.setBackground(Color.BLACK);
@@ -42,21 +60,20 @@ public class FrameShell extends JFrame{
 	
 	
 	add(BorderLayout.NORTH,pnlHead);
-	add(BorderLayout.CENTER,pnlScreen);
+	add(BorderLayout.CENTER,pnlScreens);
 	add(BorderLayout.SOUTH,pnlHome);
 	
 
 	}
 
 
-	public void addPnlScreen(JPanel pnlScreen, String stScreen) {
-		pnlScreens.add(pnlScreen, stScreen);
-		pack();
+	public void addPnlScreen(JPanel pnlScreen) {
+		pnlApp[indice] = pnlScreen;
+		pnlScreens.add(pnlApp[indice], listContent[indice]);
+		indice++;
 	}
 	public void changePnlScreen(String stScreen) {
 		cldScreen = (CardLayout) pnlScreens.getLayout();
 		cldScreen.next(pnlScreens);
-	}
-	
-	
+	}	
 }

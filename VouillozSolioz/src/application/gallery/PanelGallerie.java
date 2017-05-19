@@ -12,6 +12,7 @@ public class PanelGallerie extends JPanel{
 		setPreferredSize(new Dimension(480, 770));
 		setBackground(Color.RED);
 		revalidate();
+		setVisible(true);
 		
 	}
 

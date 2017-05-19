@@ -28,6 +28,7 @@ public class PanelHome extends JPanel {
 		
 		setPreferredSize(new Dimension(480, 770));
 		setBackground(Color.BLUE);
+		setVisible(true);
 		for (int i = 0; i < monContact.length; i++) {
 			monContact[i] = new LabelApplication();
 			
