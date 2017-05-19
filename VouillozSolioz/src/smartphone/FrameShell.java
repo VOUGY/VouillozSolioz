@@ -57,6 +57,7 @@ public class FrameShell extends JFrame{
 	btnHome.addActionListener(new ActionListener(){
 	      public void actionPerformed(ActionEvent event){				
 	    	  cldScreen.show(pnlScreens, "Home");
+	    	  //Home
 	        }
 	      });
 	
