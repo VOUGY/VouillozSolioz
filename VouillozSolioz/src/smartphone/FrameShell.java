@@ -1,7 +1,7 @@
 package smartphone;
 
 
-import application.gallery.PanelGallerie;
+import application.gallery.PanelGallery;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;

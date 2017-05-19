@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import application.gallery.PanelGallerie;
+import application.gallery.PanelGallery;
 import smartphone.FrameShell;
 
 public class PanelHome extends JPanel {
@@ -68,18 +68,15 @@ public class PanelHome extends JPanel {
          
  }
 
-class ClickContacts implements ActionListener { //evenement si on clique sur le bouton "Contacts"
+class ClickContacts implements ActionListener { //event when click on app "Contacts"
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Contacts!"); //test
+		System.out.println("Contacts!");
 		FrameShell.changePnlScreen("Contact");
-		//PanelGallerie PanelGallerie = new PanelGallerie();
-		// changePnlScreen(PanelGallerie, "PanelGallerie"); -> il faut faire en sorte d'appeler 
-		// la méthode changePnlScreen qui se trouve dans FrameShell.java
 	}
 }
 
-class ClickGallerie implements ActionListener { //evenement si on clique sur le bouton "Gallerie"
+class ClickGallerie implements ActionListener { //event when click on app "Gallerie"
 	
 	public void actionPerformed(ActionEvent e) {
 		FrameShell.changePnlScreen("Gallery");

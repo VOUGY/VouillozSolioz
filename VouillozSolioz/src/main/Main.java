@@ -6,26 +6,26 @@ import javax.swing.JPanel;
 
 import application.contact.Contact;
 import smartphone.FrameShell;
-import application.gallery.PanelGallerie;
+import application.gallery.PanelGallery;
 import application.home.PanelHome;
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		// Création de nos panels
+		// Create panels (one panel per app)
 		PanelHome pnlHome = new PanelHome();
 		Contact pnlContact = new Contact();
-		PanelGallerie pnlGallery = new PanelGallerie();
+		PanelGallery pnlGallery = new PanelGallery();
 		
-		//Initialisation de la shell avec pnl d'accueil
+		//Initalize shell of our homescreen
 		FrameShell myShell = new FrameShell(pnlHome);
 		
-		// rajout des panels apps
+		//Add panels (apps) to the shell
 		myShell.addPnlScreen(pnlGallery);
 		myShell.addPnlScreen(pnlContact);
 	
-		//affichage de la fenetre
+		//show smartphone
 		myShell.setVisible(true);
 
 	

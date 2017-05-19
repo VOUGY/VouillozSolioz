@@ -5,9 +5,9 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-public class PanelGallerie extends JPanel{
+public class PanelGallery extends JPanel{
 	
-	public PanelGallerie() {
+	public PanelGallery() {
 		
 		setPreferredSize(new Dimension(480, 770));
 		setBackground(Color.RED);
