@@ -11,8 +11,8 @@ public class Contacts {
 	public Contacts() 
 	{
 		//Test
-		myContact = new Contact(1234,"Paul", "Carron", "+2345678", "dfghj@fhgjk.gh", "/ghjk/fgvhbjk/vgh");
-		myContact1 = new Contact(1235,"Henri", "Carron", "+2345678", "dfghj@fhgjk.gh", "/ghjk/fgvhbjk/vgh");
+		myContact = new Contact(1234,"ddd.ccx");
+		myContact1 = new Contact(1235,"jksld");
 		contacts.add(myContact);
 		contacts.add(myContact1);
 		
@@ -24,6 +24,12 @@ public class Contacts {
 		for (Contact contact : contacts) {
 			System.out.println(contact.toString());
 		}
+	}
+	public void deleteContact(int Id)
+	{
+		contacts.remove(Id);
+		//delete fichier
+		
 	}
 	
 }

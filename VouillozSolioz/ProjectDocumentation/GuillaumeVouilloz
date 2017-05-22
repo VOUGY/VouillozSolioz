@@ -4,6 +4,13 @@ Choix de l'interface de notre smartphone (création d'un modèle sur logiciel)
 19 Mai 2017
 	--	Mise en place du CardLayout pour le changement entre chaque app 
 	--	Création d'une méthode change pnl en static pour le changment dans le panelHome
-	--  Mise en place de différents classes pour c
+	--  Mise en place de différents classes pour l'application Contact
 20 Mai 2017
-	--	Problème avec le Git impossible de synchroniser certain fichier 
+	--	Problème avec le Git impossible de synchroniser certains fichiers -> upload depuis github directement
+	--	Reflexion sur comment devait travailler les classes entre elle, modification de la structure 
+	-- 	pensait précedemment. Contact contient un tableau d'info, la lecture et l'écriture se fait directement
+	--	directement dans la classe Contact. (à voir si assez de temps si c'est possible d'avoir la même classe avec Nico pour 
+	--	ces lectures de fichiers (car on fait la même chose au final)
+	--	Partir sur un modèle déjà console avant de perdre du temps sur le graphique
+	--  à définir si il y a des modifications à faire dans le frameshell du jscrollpane (polymorphisme ? à discuter)
+	

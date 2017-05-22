@@ -6,22 +6,44 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 public class Contact extends JPanel {
-
-	int iD;
-	String name,firstName,number,eMail,path;
+ // A changer constructeur avec seulement le chemin et lecture individuelle de chaque contact
+	//int iD;
+	//String name,firstName,number,eMail,pathFile,pathPicture;
 	
-	public Contact (int iD, String name, String firstName, String number,String eMail, String path)
+	/**
+	 * Structure de mesinfos
+	 * 	[0] ID 
+	 *  [1] pathFile
+	 *  [2] FirstName
+	 *  [3] Name
+	 *  [4] Number
+	 *  [5] Email
+	 *  [6] pathPicture
+	 *  
+	 */
+	String[] mesinfos = new String[5];
+	public Contact (String iD,String pathFile)
 	{
-		this.iD = iD;
-		this.name = name;
-		this.firstName = firstName;
-		this.number = number;
-		this.eMail = eMail;
-		this.path = path;
+		mesinfos[0]= iD;
+		mesinfos[1]= pathFile;
 	}
 	
 	public String toString()
     {
-		return firstName + " " + name;
+		return mesinfos[2] + " ";
+	}
+	public void ModifyContact (String iD, String name, String firstName, String number,String eMail, String pathPicture)
+	{
+		/*this.iD = iD;
+		this.name = name;
+		this.firstName = firstName;
+		this.number = number;
+		this.pathFile = pathFile;
+		this.pathPicture = pathPicture;*/
+		mesinfos[0] = iD;
+		mesinfos[2] = name;
+		mesinfos[3] = firstName;
+		mesinfos[4] = number;
+		mesinfos[5] = pathPicture;
 	}
 }
