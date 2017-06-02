@@ -72,6 +72,7 @@ class ClickContacts implements ActionListener { //event when click on app "Conta
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Contacts!");
 		FrameShell.changePnlScreen("Contact");
+		
 	}
 }
 
