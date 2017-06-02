@@ -61,9 +61,8 @@ public class PanelHome extends JPanel {
 		btnContacts.addActionListener(new ClickContacts());
 		btnGallery.addActionListener(new ClickGallerie());
 		
-		System.out.println("Test");
+		System.out.println("Smartphone is turning on...");
 		revalidate();
-		System.out.println("TEst");
 	}
          
  }

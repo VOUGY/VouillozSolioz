@@ -13,19 +13,16 @@ public class Contacts {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Contacts mescontacts = new Contacts();
-		Contact myContact = new Contact("124", "");
+		Contact myContact = new Contact("124");
+		myContact.AddContact("DFG", "DFGHJ", "+2387654", "DFGHJIHUIG@hotmail.com", "sdfg/hjk");
+		
+		mescontacts.viewContact();
 	}
 
 	public Contacts() {
-		// Test
-/*		myContact = new Contact("1234", "src/application/contact/contactcsv/GuillaumeVouilloz.txt");
-		myContact1 = new Contact("1235", "src/application/contact/contactcsv/NicolasSolioz.txt");
-		contacts.add(myContact);
-		contacts.add(myContact1);*/
+		
 		listerRepertoire(new File("src/application/contact/contactcsv"));
-
 		viewContact();
-		//deleteContact(2);
 		
 
 	}
