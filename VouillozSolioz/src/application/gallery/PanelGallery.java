@@ -71,17 +71,6 @@ public class PanelGallery extends JPanel{
 		//render Panels visible
 		setVisible(true);
 		revalidate();
-		
-		images.revalidate();
-		images.setVisible(true);
-		
-		pnl.setVisible(true);
-		pnl.revalidate();
-		
-		
-		
-		
-		
 
 	}
 	

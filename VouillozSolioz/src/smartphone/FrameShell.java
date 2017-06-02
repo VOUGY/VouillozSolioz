@@ -44,6 +44,7 @@ public class FrameShell extends JFrame{
 	
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
 	setSize(480, 840);
+	setResizable(false);
 	
 
 	pnlHead = new JPanel();
