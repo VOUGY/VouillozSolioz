@@ -11,8 +11,6 @@ public class Contacts {
 	public Contacts() 
 	{
 		//Test
-		myContact = new Contact(1234,"ddd.ccx");
-		myContact1 = new Contact(1235,"jksld");
 		contacts.add(myContact);
 		contacts.add(myContact1);
 		
