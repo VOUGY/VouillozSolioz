@@ -9,6 +9,7 @@ public class Contacts {
 	ArrayList<Contact> contacts = new ArrayList<Contact>();
 	
 
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Contacts mescontacts = new Contacts();
