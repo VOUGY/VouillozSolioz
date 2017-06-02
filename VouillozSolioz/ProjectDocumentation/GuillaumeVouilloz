@@ -13,4 +13,6 @@ Choix de l'interface de notre smartphone (création d'un modèle sur logiciel)
 	--	ces lectures de fichiers (car on fait la même chose au final)
 	--	Partir sur un modèle déjà console avant de perdre du temps sur le graphique
 	--  à définir si il y a des modifications à faire dans le frameshell du jscrollpane (polymorphisme ? à discuter)
-	
+2 Juin 2017
+	-- read and write in CSV
+	-- afficher dans une console
