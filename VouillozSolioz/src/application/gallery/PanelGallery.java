@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -45,12 +48,22 @@ public class PanelGallery extends JPanel{
 		//loop to fill images Panel with images from src folder
 		for(int i = 0; i<nbImages;i++) 
 		{
-			ImageIcon myPicture = new ImageIcon("src/application/gallery/images/" + imageFolderString[i]);
+			String pictureLink = "src/application/gallery/images/" + imageFolderString[i];
+			ImageIcon myPicture = new ImageIcon(pictureLink);
 			Image myPictureImage = myPicture.getImage();
 			Image myPictureImageResized = myPictureImage.getScaledInstance(300, 240, java.awt.Image.SCALE_SMOOTH);
 			myPicture = new ImageIcon(myPictureImageResized);
-
-			images.add(new JLabel(myPicture));
+			
+			JLabel pictureLabel = new JLabel(myPicture);
+			pictureLabel.addMouseListener(new MouseAdapter () {
+				@Override
+		         public void mousePressed(MouseEvent e) {
+					System.out.println(pictureLink);
+				}
+			});
+			
+			
+			images.add(pictureLabel);
 		}
 		
 		//create JScrollPane
@@ -71,9 +84,12 @@ public class PanelGallery extends JPanel{
 		//render Panels visible
 		setVisible(true);
 		revalidate();
+		
+		
 
-	}
-	
-
-
+	}	
 }
+
+
+
+
