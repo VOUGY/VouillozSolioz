@@ -10,27 +10,34 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
+import java.awt.Component;
 
 public class PanelContactMin extends JPanel {
 
 	JLabel lblNomPrenom = new JLabel ();
 	JLabel lblAbrevation = new JLabel();
+	int iD;
 //	MyMouseListener mesinfo = new MyMouseListener();
-	public PanelContactMin ()
+	public PanelContactMin (int iD)
 	{
+		FlowLayout flowLayout = (FlowLayout) getLayout();
+		flowLayout.setVgap(0);
+		flowLayout.setHgap(0);
 		//COntact
+		this.iD = iD;
 		setBackground(Color.GRAY);
-		setPreferredSize(new Dimension(480, 50));
+		setPreferredSize(new Dimension(480, 70));
+		lblAbrevation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAbrevation.setText("GV");
 		
-	//	lblAbrevation.setBackground(Color.BLUE);
-	//	lblAbrevation.setOpaque(true);
-		lblAbrevation.setPreferredSize(new Dimension(50, 50));
+		
+		lblAbrevation.setPreferredSize(new Dimension(70, 70));
 		lblAbrevation.setFont(new Font("Arial", Font.BOLD, 35));
-		lblAbrevation.setAlignmentY(TOP_ALIGNMENT);
 		lblAbrevation.setVerticalTextPosition(JLabel.CENTER);
-	//	lblNomPrenom.setBackground(Color.WHITE);
-	//	lblNomPrenom.setOpaque(true);
-		lblNomPrenom.setPreferredSize(new Dimension(400, 50));
+		lblNomPrenom.setText("test");
+		lblNomPrenom.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNomPrenom.setPreferredSize(new Dimension(400, 70));
 		lblNomPrenom.setFont(new Font("Arial", Font.BOLD, 25));
 	//	addMouseListener(mesinfo);
 		add(lblAbrevation);
@@ -42,12 +49,8 @@ public class PanelContactMin extends JPanel {
 		lblNomPrenom.setText(Prenom +" "+ Nom);
 		lblAbrevation.setText(Prenom.substring(0, 1)+ Nom.substring(0, 1));
 	}
-	
-	public class MyMouseListener extends MouseAdapter {
-		public void mouseClicked(MouseEvent e)
-		{
-			System.out.println("closing");
-			
-		}
+	public int getiD ()
+	{
+		return iD;
 	}
 }

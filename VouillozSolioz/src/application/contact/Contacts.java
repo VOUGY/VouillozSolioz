@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.event.MouseInputAdapter;
 
-import application.contact.PanelContactMin.MyMouseListener;
+
 
 public class Contacts extends JPanel {
 
@@ -28,8 +28,8 @@ public class Contacts extends JPanel {
 		viewContact();
 		for (int i = 0; i < contacts.size(); i++) {
 			
-			myPanel.add(contacts.get(i).getMyPanelContactMin());
-			contacts.get(i).getMyPanelContactMin().addMouseListener(mesinfo);
+			myPanel.add(contacts.get(i).getMyPanelContactMax());
+			contacts.get(i).getMyPanelContactMin().addMouseListener(new MyMouseListener());
 			myPanel.setMinimumSize(new Dimension(480, 660));
 			myPanel.setPreferredSize(new Dimension(480, 5000));
 		}
@@ -54,14 +54,12 @@ public class Contacts extends JPanel {
 			System.out.println(contact.toString());
 		}
 	}
-
 	public void deleteContact(int Id) {
 		contacts.get(Id).DeleteContact();
 		contacts.remove(Id);
 		// delete fichier
 
 	}
-
 	public void listerRepertoire(File repertoire) {
 
 		String[] listefichiers;
@@ -80,7 +78,11 @@ public class Contacts extends JPanel {
 	public class MyMouseListener extends MouseAdapter {
 		public void mouseClicked(MouseEvent e)
 		{
-			System.out.println("closing");
+			PanelContactMin temp = (PanelContactMin) e.getSource();
+			
+			System.out.println(contacts.get(temp.getiD()).toString());
+			myPanel.add(contacts.get(temp.getiD()).getMyPanelContactMax());
+			revalidate();
 			
 		}
 	}
