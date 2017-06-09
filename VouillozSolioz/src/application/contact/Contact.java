@@ -8,13 +8,13 @@ import java.nio.file.Path;
 
 import javax.swing.JPanel;
 
-public class Contact extends JPanel {
+public class Contact {
  // A changer constructeur avec seulement le chemin et lecture individuelle de chaque contact
 	//int iD;
 	//String name,firstName,number,eMail,pathFile,pathPicture;
 	
 	/**
-	 * Structure de mesinfos
+	 * Structure of mesinfos
 	 * 	[0] ID 
 	 *  [1] pathFile
 	 *  [2] FirstName
@@ -25,7 +25,14 @@ public class Contact extends JPanel {
 	 *  
 	 */
 	String[] mesinfos = new String[7];
+	protected PanelContactMin myPanelContactMin = new PanelContactMin();
 	
+	public String[] getMesinfos() {
+		return mesinfos;
+	}
+	public void setMesinfos(String[] mesinfos) {
+		this.mesinfos = mesinfos;
+	}
 	/**
 	 * Use when the contact already exists.
 	 * @param iD number to the arraylist
@@ -39,6 +46,13 @@ public class Contact extends JPanel {
 		
 		//fill other information of the contacts
 		read(pathFile,mesinfos);
+		myPanelContactMin.setInfos(mesinfos[2],mesinfos[3]);
+	}
+	public PanelContactMin getMyPanelContactMin() {
+		return myPanelContactMin;
+	}
+	public void setMyPanelContactMin(PanelContactMin myPanelContactMin) {
+		this.myPanelContactMin = myPanelContactMin;
 	}
 	/**
 	 * Use when you create a new Contact
