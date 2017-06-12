@@ -2,19 +2,22 @@ package application.contact;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.xml.bind.ParseConversionEvent;
 
-public class Contact extends JPanel {
+public class Contact {
  // A changer constructeur avec seulement le chemin et lecture individuelle de chaque contact
 	//int iD;
 	//String name,firstName,number,eMail,pathFile,pathPicture;
 	
 	/**
-	 * Structure de mesinfos
+	 * Structure of mesinfos
 	 * 	[0] ID 
 	 *  [1] pathFile
 	 *  [2] FirstName
@@ -25,6 +28,8 @@ public class Contact extends JPanel {
 	 *  
 	 */
 	String[] mesinfos = new String[7];
+    PanelContactMin myPanelContactMin;
+	PanelContactMax myPanelContactMax;
 	
 	/**
 	 * Use when the contact already exists.
@@ -40,6 +45,25 @@ public class Contact extends JPanel {
 		//fill other information of the contacts
 		read(pathFile,mesinfos);
 	}
+	
+	public PanelContactMin getMyPanelContactMin() {
+		myPanelContactMin = new PanelContactMin(Integer.parseInt(mesinfos[0]));
+		myPanelContactMin.setInfos(mesinfos[2],mesinfos[3]);
+		return myPanelContactMin;
+	}
+	public PanelContactMax getMyPanelContactMax() {
+		myPanelContactMax = new PanelContactMax(mesinfos);
+		return myPanelContactMax;
+	}
+	
+	public String[] getMesinfos() {
+		return mesinfos;
+	}
+	public void setMesinfos(String[] mesinfos) {
+		this.mesinfos = mesinfos;
+	}
+	
+	
 	/**
 	 * Use when you create a new Contact
 	 * @param iD number to the arraylist
@@ -48,7 +72,6 @@ public class Contact extends JPanel {
 	{
 		mesinfos[0]= iD;
 	}
-	
 	/**
 	 * improved version of ToString
 	 */
@@ -125,7 +148,6 @@ public class Contact extends JPanel {
 		e.printStackTrace();
 	}
 	}
-	
 
 	/**
 	 * Read the file *.csv
@@ -160,8 +182,5 @@ public class Contact extends JPanel {
 		}
 		
 	}
-	public void GetInfo()
-	{
-		
-	}
+
 }

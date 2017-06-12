@@ -7,8 +7,10 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import application.contact.Contacts;
 //import application.contact.Contact;
-import application.contact.PanelContact;
+import application.contact.PanelContactMin;
+import application.contact.PanelContacts;
 //import application.contact.PanelContacts;
 import smartphone.FrameShell;
 import application.gallery.PanelGallery;
@@ -21,16 +23,17 @@ public class Main {
 		
 		// Create panels (one panel per app)
 		PanelHome pnlHome = new PanelHome();
-		//PanelContacts pnlContacts = new PanelContacts();
+		;
 		PanelGallery pnlGallery = new PanelGallery();
+		Contacts pnlContacts = new Contacts();
 		
 		//Initalize shell of our homescreen
 		FrameShell myShell = new FrameShell(pnlHome);
 		
 		//Add panels (apps) to the shell
 		myShell.addPnlScreen(pnlGallery);
-		
-		//myShell.addPnlScreen(pnlContacts);
+
+		myShell.addPnlScreen(pnlContacts);
 
 		//show smartphone
 		myShell.setVisible(true);
