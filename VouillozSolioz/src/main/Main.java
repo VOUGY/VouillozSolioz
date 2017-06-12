@@ -23,9 +23,9 @@ public class Main {
 		
 		// Create panels (one panel per app)
 		PanelHome pnlHome = new PanelHome();
-		;
+
 		PanelGallery pnlGallery = new PanelGallery();
-		Contacts pnlContacts = new Contacts();
+		//Contacts pnlContacts = new Contacts();
 		
 		//Initalize shell of our homescreen
 		FrameShell myShell = new FrameShell(pnlHome);
@@ -33,7 +33,7 @@ public class Main {
 		//Add panels (apps) to the shell
 		myShell.addPnlScreen(pnlGallery);
 
-		myShell.addPnlScreen(pnlContacts);
+		//myShell.addPnlScreen(pnlContacts);
 
 		//show smartphone
 		myShell.setVisible(true);
