@@ -29,6 +29,7 @@ public class Contact {
 	 */
 	String[] mesinfos = new String[7];
     PanelContactMin myPanelContactMin;
+    
 	PanelContactMax myPanelContactMax;
 	
 	/**

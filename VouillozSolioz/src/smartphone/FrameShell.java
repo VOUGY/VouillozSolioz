@@ -1,7 +1,6 @@
 package smartphone;
 
 
-import application.gallery.PanelGallery;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -12,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
-import javax.security.auth.Refreshable;
 import javax.swing.*;
 
 public class FrameShell extends JFrame{
@@ -26,8 +24,11 @@ public class FrameShell extends JFrame{
 	 */
 	protected static CardLayout cldScreen = new CardLayout();
 	protected static JPanel pnlScreens = new JPanel();
+
 	static ArrayList<JPanel> pnlApp = new ArrayList<JPanel>();
 	protected static String[] Home = {"Home","Gallery","Contact"};
+
+	
 	protected static int indice = 1;
 
 	public FrameShell(JPanel pnlScreen) {
@@ -82,8 +83,9 @@ public class FrameShell extends JFrame{
 	public static void addPnlScreen(JPanel pnlScreen, String Name) {
 		
 		pnlScreens.add(pnlScreen, Name);
-		indice++;
 	}
+	
+	
 	public static void changePnlScreen(String stScreen) {
 		cldScreen = (CardLayout) pnlScreens.getLayout();
 		cldScreen.show(pnlScreens, stScreen);

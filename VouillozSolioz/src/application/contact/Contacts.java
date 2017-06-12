@@ -35,8 +35,6 @@ public class Contacts extends JPanel {
 		listerRepertoire(new File("src/application/contact/contactcsv"));
 		viewContact();
 
-		// System.out.println(contacts.size());
-
 		// create JScrollPane
 		JPanel mylistcontact = new JPanel();
 		JScrollPane pnl = new JScrollPane(myPanel);
@@ -113,6 +111,7 @@ public class Contacts extends JPanel {
 	}
 
 	public class MyMouseListener extends MouseAdapter {
+
 		int iD;
 
 		public MyMouseListener(int iD) {
@@ -124,7 +123,6 @@ public class Contacts extends JPanel {
 
 			System.out.println(iD);
 			// myPanel.add(contacts.get(temp.getiD()).getMyPanelContactMax());
-
 		}
 	}
 	

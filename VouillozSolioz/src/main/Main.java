@@ -1,7 +1,10 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import application.contact.Contacts;
@@ -11,6 +14,7 @@ import application.contact.PanelContacts;
 //import application.contact.PanelContacts;
 import smartphone.FrameShell;
 import application.gallery.PanelGallery;
+import application.gallery.PanelImage;
 import application.home.PanelHome;
 public class Main {
 
@@ -26,11 +30,12 @@ public class Main {
 		FrameShell myShell = new FrameShell(pnlHome);
 		
 		//Add panels (apps) to the shell
+
 		FrameShell.addPnlScreen(pnlGallery,"Gallery");
 		FrameShell.addPnlScreen(pnlContacts,"Contact");
 		
+
 	
-		//show smartphone
 		myShell.setVisible(true);
 	
 	}
