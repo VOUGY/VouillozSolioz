@@ -28,7 +28,7 @@ public class Contacts extends JPanel {
 		viewContact();
 		for (int i = 0; i < contacts.size(); i++) {
 			
-			myPanel.add(contacts.get(i).getMyPanelContactMax());
+			//myPanel.add(contacts.get(i).getMyPanelContactMax());
 			contacts.get(i).getMyPanelContactMin().addMouseListener(new MyMouseListener());
 			myPanel.setMinimumSize(new Dimension(480, 660));
 			myPanel.setPreferredSize(new Dimension(480, 5000));
@@ -81,7 +81,7 @@ public class Contacts extends JPanel {
 			PanelContactMin temp = (PanelContactMin) e.getSource();
 			
 			System.out.println(contacts.get(temp.getiD()).toString());
-			myPanel.add(contacts.get(temp.getiD()).getMyPanelContactMax());
+			//myPanel.add(contacts.get(temp.getiD()).getMyPanelContactMax());
 			revalidate();
 			
 		}

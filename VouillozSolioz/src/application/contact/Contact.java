@@ -29,7 +29,7 @@ public class Contact {
 	 */
 	String[] mesinfos = new String[7];
     PanelContactMin myPanelContactMin;
-	PanelContactMax myPanelContactMax;
+	//PanelContactMax myPanelContactMax;
 	
 	/**
 	 * Use when the contact already exists.
@@ -51,10 +51,10 @@ public class Contact {
 		myPanelContactMin.setInfos(mesinfos[2],mesinfos[3]);
 		return myPanelContactMin;
 	}
-	public PanelContactMax getMyPanelContactMax() {
-		myPanelContactMax = new PanelContactMax(mesinfos);
-		return myPanelContactMax;
-	}
+	//public PanelContactMax getMyPanelContactMax() {
+		//myPanelContactMax = new PanelContactMax(mesinfos);
+		//return myPanelContactMax;
+	//}
 	
 	public String[] getMesinfos() {
 		return mesinfos;
