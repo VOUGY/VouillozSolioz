@@ -61,6 +61,8 @@ public class PanelGallery extends JPanel{
 		//add images Panel to scrollPane & add scrollPane to PanelGallery
 		
 		add(pnl);
+		
+		PanelImage[] pnlImages = new PanelImage[nbImages];
 				
 		//loop to fill images Panel with images from src folder
 		for(int i = 0; i<nbImages;i++) 
@@ -74,26 +76,26 @@ public class PanelGallery extends JPanel{
 			
 			JLabel pictureLabel = new JLabel(myPicture);
 			
-			int nbImage = i;
+			
+			pnlImages[i] = new PanelImage(i, images, pnl);
+			add(pnlImages[i]);
 		
+			int refImage = i;
 			//when click on one of the images in GridLayout
 			pictureLabel.addMouseListener(new MouseAdapter () {
 				@Override
 		         public void mousePressed(MouseEvent e) {
-					System.out.println(nbImage);
 
-					PanelImage pnlImage = new PanelImage(nbImage, images, pnl);
-					add(pnlImage);
-					
+					System.out.println(refImage);
+
 					images.setVisible(false);
 					pnl.setVisible(false);
 					
-					pnlImage.setVisible(true);
+					pnlImages[refImage].setVisible(true);
 
-					pnlImage.revalidate();
-					pnlImage.repaint();
-					
-					System.out.println("That shit's done bro");
+					pnlImages[refImage].revalidate();
+					pnlImages[refImage].repaint();
+
 				}
 			});
 
