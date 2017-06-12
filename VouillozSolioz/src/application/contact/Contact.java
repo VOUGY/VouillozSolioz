@@ -111,6 +111,7 @@ public class Contact {
 		mesinfos[4] = number;
 		mesinfos[5] = eMail;
 		mesinfos[6] = pathPicture;
+		
 	}
 	/**
 	 * Delete contact
@@ -182,5 +183,8 @@ public class Contact {
 		}
 		
 	}
-
+	public String getId()
+	{
+		return mesinfos[0];
+	}
 }

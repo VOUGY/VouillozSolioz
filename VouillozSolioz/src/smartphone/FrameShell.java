@@ -7,6 +7,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,9 +26,9 @@ public class FrameShell extends JFrame{
 	 */
 	protected static CardLayout cldScreen = new CardLayout();
 	protected static JPanel pnlScreens = new JPanel();
-	JPanel[] pnlApp = new JPanel[3];
-	protected String[] listContent = {"Home","Gallery","Contact"};
-	protected int indice = 1;
+	static ArrayList<JPanel> pnlApp = new ArrayList<JPanel>();
+	protected static String[] Home = {"Home","Gallery","Contact"};
+	protected static int indice = 1;
 
 	public FrameShell(JPanel pnlScreen) {
 		
@@ -49,10 +50,10 @@ public class FrameShell extends JFrame{
 
 	pnlHead = new JPanel();
 	pnlHome = new JPanel();
-	pnlApp[0] = pnlScreen;
+	pnlApp.add(pnlScreen);
 
 	pnlScreens.setLayout(cldScreen);
-	pnlScreens.add(pnlApp[0],listContent[0]);
+	pnlScreens.add(pnlApp.get(0),"Home");
 	
 	btnReturn  = new JButton("Return");
 	btnHome.addActionListener(new ActionListener(){
@@ -78,9 +79,9 @@ public class FrameShell extends JFrame{
 	}
 
 
-	public void addPnlScreen(JPanel pnlScreen) {
-		pnlApp[indice] = pnlScreen;
-		pnlScreens.add(pnlApp[indice], listContent[indice]);
+	public static void addPnlScreen(JPanel pnlScreen, String Name) {
+		
+		pnlScreens.add(pnlScreen, Name);
 		indice++;
 	}
 	public static void changePnlScreen(String stScreen) {

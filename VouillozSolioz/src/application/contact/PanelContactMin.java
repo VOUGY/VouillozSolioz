@@ -12,10 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import java.awt.Component;
+import javax.swing.JButton;
 
 public class PanelContactMin extends JPanel {
 
-	JLabel lblNomPrenom = new JLabel ();
+	JButton btnNomPrenom = new JButton ();
 	JLabel lblAbrevation = new JLabel();
 	int iD;
 //	MyMouseListener mesinfo = new MyMouseListener();
@@ -35,18 +36,25 @@ public class PanelContactMin extends JPanel {
 		lblAbrevation.setPreferredSize(new Dimension(70, 70));
 		lblAbrevation.setFont(new Font("Arial", Font.BOLD, 35));
 		lblAbrevation.setVerticalTextPosition(JLabel.CENTER);
-		lblNomPrenom.setText("test");
-		lblNomPrenom.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNomPrenom.setPreferredSize(new Dimension(400, 70));
-		lblNomPrenom.setFont(new Font("Arial", Font.BOLD, 25));
+		btnNomPrenom.setBorder(null);
+		btnNomPrenom.setContentAreaFilled(false);
+		btnNomPrenom.setFocusTraversalKeysEnabled(false);
+		btnNomPrenom.setFocusPainted(false);
+		btnNomPrenom.setOpaque(false);
+		btnNomPrenom.setBackground(Color.GRAY);
+		btnNomPrenom.setText("test");
+		btnNomPrenom.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNomPrenom.setPreferredSize(new Dimension(400, 70));
+		btnNomPrenom.setFont(new Font("Arial", Font.BOLD, 25));
+		btnNomPrenom.addMouseListener(new MyMouseListener(iD));
 	//	addMouseListener(mesinfo);
 		add(lblAbrevation);
-		add(lblNomPrenom);
+		add(btnNomPrenom);
 		
 	}
 	public void setInfos(String Nom, String Prenom)
 	{
-		lblNomPrenom.setText(Prenom +" "+ Nom);
+		btnNomPrenom.setText(Prenom +" "+ Nom);
 		lblAbrevation.setText(Prenom.substring(0, 1)+ Nom.substring(0, 1));
 	}
 	public int getiD ()
