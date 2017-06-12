@@ -80,8 +80,8 @@ public class PanelGallery extends JPanel{
 			pictureLabel.addMouseListener(new MouseAdapter () {
 				@Override
 		         public void mousePressed(MouseEvent e) {
-					System.out.println(pictureLink);
-					
+					System.out.println(nbImage);
+
 					PanelImage pnlImage = new PanelImage(nbImage, images, pnl);
 					add(pnlImage);
 					
@@ -89,7 +89,7 @@ public class PanelGallery extends JPanel{
 					pnl.setVisible(false);
 					
 					pnlImage.setVisible(true);
-					
+
 					pnlImage.revalidate();
 					pnlImage.repaint();
 					
