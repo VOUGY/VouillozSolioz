@@ -80,18 +80,7 @@ public class Contact {
     {
 		return mesinfos[3] + " ";
 	}
-	/**
-	 * 
-	 * @return the value of the csv
-	 */
-	public String toCSV()
-    {
-		String myCSV = "";
-		for (int i = 2; i < mesinfos.length; i++) {
-			myCSV += mesinfos[i] + ";";
-		}
-		return myCSV;
-	}
+	
 	
 	/**
 	 * Modification of the contact
@@ -114,42 +103,9 @@ public class Contact {
 		mesinfos[6] = pathPicture;
 		
 	}
-	/**
-	 * Delete contact
-	 */
-	public void DeleteContact ()
-	{
-		File myfile = new File(mesinfos[1]);
-		if(!myfile.delete())
-			System.out.println("Echec");;
-	}
 	
-	/**
-	 * Use when you fill a new contact
-	 * @param name
-	 * @param firstName
-	 * @param number
-	 * @param eMail
-	 * @param pathPicture
-	 */
-	public void AddContact(String name, String firstName, String number,String eMail, String pathPicture) 
-	{	
-		ModifyContact(mesinfos[0],name+firstName+".txt",name, firstName, number, eMail, pathPicture);
-		
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-	              new FileOutputStream("src/application/contact/contactcsv/"+mesinfos[1]), "utf-8"))) {
-	   writer.write(this.toCSV());
-	} catch (UnsupportedEncodingException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	}
+	
+
 
 	/**
 	 * Read the file *.csv

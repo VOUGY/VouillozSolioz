@@ -148,31 +148,28 @@ public class PanelContactMax extends JPanel {
 					texteField.setForeground(Color.black);
 					texteField.removeMouseListener(this);
 				}
-
 				@Override
 				public void mouseEntered(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 
 				}
-
 				@Override
 				public void mouseExited(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 
 				}
-
 				@Override
 				public void mousePressed(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 
 				}
-
 				@Override
 				public void mouseReleased(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 
 				}
 			});
+
 			GridBagConstraints gbc_txt = new GridBagConstraints();
 			gbc_txt.anchor = GridBagConstraints.NORTH;
 			gbc_txt.fill = GridBagConstraints.HORIZONTAL;
@@ -215,7 +212,7 @@ public class PanelContactMax extends JPanel {
 
 		btnEdit = new JButton("Edit");
 		if (NewContact)
-			btnEdit.setText("Validate");
+			btnEdit.setText("Create");
 		btnEdit.addActionListener(new actEdit());
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.anchor = GridBagConstraints.NORTH;
@@ -253,14 +250,25 @@ public class PanelContactMax extends JPanel {
 				for (int i = 0; i < mytxtfdinfo.length; i++) {
 					mytxtfdinfo[i].setEditable(false);
 					btnEdit.setText("Edit");
-					Contacts.contacts.get(Integer.parseInt(myinfo[0])).ModifyContact(myinfo[0], myinfo[1],
+					Contacts.ModifyContact(myinfo[0], myinfo[1],
 							mytxtfdinfo[0].getText(), mytxtfdinfo[1].getText(), mytxtfdinfo[2].getText(),
 							mytxtfdinfo[3].getText(), " ");
+					Contacts.changePnlScreen("Home");
 				}
-			} else if (((JButton) e.getSource()).getText() == "Back") {
+			}
+			else if (((JButton) e.getSource()).getText() == "Create") {
+					Contacts.AddContact(mytxtfdinfo[0].getText(), mytxtfdinfo[1].getText(), mytxtfdinfo[2].getText(),
+							mytxtfdinfo[3].getText(),"");
+					
+					for (int i = 0; i < mytxtfdinfo.length; i++) {
+						mytxtfdinfo[i].setEditable(false);
+						btnEdit.setText("Edit");
+					}
+			}
+			else if (((JButton) e.getSource()).getText() == "Back") {
 				Contacts.changePnlScreen("Home");
 			} else if (((JButton) e.getSource()).getText() == "Delete") {
-				Contacts.contacts.get(Integer.parseInt(myinfo[0])).DeleteContact();
+				Contacts.deleteContact(myinfo[0], myinfo[1]);
 				Contacts.delPnlScreen(Integer.parseInt(myinfo[0]));
 				Contacts.changePnlScreen("Home");
 				

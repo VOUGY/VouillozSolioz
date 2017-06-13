@@ -9,7 +9,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -32,7 +39,7 @@ public class Contacts extends JPanel {
 
 	public Contacts() {
 
-		listerRepertoire(new File("src/application/contact/contactcsv"));
+		
 		viewContact();
 
 		// create JScrollPane
@@ -57,19 +64,19 @@ public class Contacts extends JPanel {
 		add(pnlScreens);
 		cldScreen.show(pnlScreens, "Home");
 
-		for (int i = 0; i < contacts.size(); i++) {
-
-			myPanel.add(contacts.get(i).getMyPanelContactMin());
-			myPanel.setMinimumSize(new Dimension(480, 660));
-			myPanel.setPreferredSize(new Dimension(480, 5000));
-			
-			System.out.println(contacts.get(i).getId());
-			pnlScreens.add(contacts.get(i).getMyPanelContactMax(), contacts.get(i).getId());
-		}
+		myPanel.setMinimumSize(new Dimension(480, 660));
+		myPanel.setPreferredSize(new Dimension(480, 5000));
+		
+		listerRepertoire(new File("src/application/contact/contactcsv"));
 		
 		btnAdd.addActionListener(new actAddContact());
 		myPanel.add(btnAdd);
 		
+	}
+	public static void addContactPan(Contact contact)
+	{
+		myPanel.add(contact.getMyPanelContactMin());
+		pnlScreens.add(contact.getMyPanelContactMax(), contact.getId());
 	}
 	public class actAddContact implements ActionListener {
 
@@ -87,19 +94,23 @@ public class Contacts extends JPanel {
 		}
 	}
 
-	public void deleteContact(int Id) {
-		contacts.get(Id).DeleteContact();
-		contacts.remove(Id);
+	public static void deleteContact(String Id, String PathFile) {
+		contacts.remove(Integer.parseInt(Id)-1);
+			File myfile = new File(PathFile);
+			if(!myfile.delete())
+				System.out.println("Echec");;
 		
 		// delete fichier
 
 	}
 
-	public void listerRepertoire(File repertoire) {
+	public static void listerRepertoire(File repertoire) {
 
 		String[] listefichiers;
-
+		myPanel.removeAll();
 		int i;
+		contacts.removeAll(contacts);
+		
 		listefichiers = repertoire.list();
 		for (i = 0; i < listefichiers.length; i++) {
 			if (listefichiers[i].endsWith(".txt") == true) {
@@ -107,6 +118,13 @@ public class Contacts extends JPanel {
 						new Contact(Integer.toString(i), "src/application/contact/contactcsv/" + listefichiers[i]));
 			}
 		}
+		for (Contact contact : contacts) {
+			addContactPan(contact);
+		}
+		
+		myPanel.repaint();
+			
+		
 
 	}
 
@@ -126,6 +144,68 @@ public class Contacts extends JPanel {
 		}
 	}
 	
+	/**
+	 * Use when you fill a new contact
+	 * @param name
+	 * @param firstName
+	 * @param number
+	 * @param eMail
+	 * @param pathPicture
+	 */
+	public static void AddContact(String name, String firstName, String number,String eMail, String pathPicture) 
+	{			
+		String nameFile = "src/application/contact/contactcsv/"+firstName + name + ".txt";
+				try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+	              new FileOutputStream(nameFile), "utf-8"))) {
+	   writer.write(name + ";" + firstName +";"+number+";"+eMail+";"+pathPicture);
+	  
+	} catch (UnsupportedEncodingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		Contact mynewcontact = new Contact(String.valueOf(contacts.size()+1),nameFile);
+		contacts.add(mynewcontact);
+		addContactPan(mynewcontact);
+			
+	}
+	/**
+	 * Use when you fill a new contact
+	 * @param name
+	 * @param firstName
+	 * @param number
+	 * @param eMail
+	 * @param pathPicture
+	 */
+	public static void ModifyContact(String Id,String namefile, String name, String firstName, String number,String eMail, String pathPicture) 
+	{			
+		String nameFile = namefile;
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+	              new FileOutputStream(nameFile), "utf-8"))) {
+	   writer.write(name + ";" + firstName +";"+number+";"+eMail+";"+pathPicture);
+	  
+	} catch (UnsupportedEncodingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+		listerRepertoire(new File("src/application/contact/contactcsv/"));
+		
+			
+	}
+
 
 	public static void addPnlScreen(JPanel pnlScreen, String Name) {
 
