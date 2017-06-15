@@ -145,8 +145,6 @@ public class Contacts extends JPanel {
 		}
 		
 		myPanel.repaint();
-			
-		
 
 	}
 
@@ -203,15 +201,16 @@ public class Contacts extends JPanel {
 	}
 		
 		listinFolder(new File(PATHFILE));
-		
-			
+
 	}
+
 
  /**
   * 
   * @param pnlScreen  
   * @param Name info to refind the pnlScreen
   */
+
 	public static void addPnlScreen(JPanel pnlScreen, String Name) {
 
 		pnlScreens.add(pnlScreen, Name);
