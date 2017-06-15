@@ -14,16 +14,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import smartphone.FrameShell;
+
 public class PanelImage extends JPanel {
 
 	int refImage;
 	JLabel pictureLabel;
 	int nbImages;
 	File imageSource;
+	int index;
 	
-	public PanelImage(int refImage, JPanel images, JScrollPane pnl) {
+	public PanelImage(int index, int refImage, JPanel images, JScrollPane pnl) {
 		
 		this.refImage = refImage;
+		this.index = index;
+		
 		setLayout(new FlowLayout());
 		
 		File imageFolder = new File("src/application/gallery/images");
@@ -70,11 +75,11 @@ public class PanelImage extends JPanel {
 	         public void mousePressed(MouseEvent e) {
 				setVisible(false);
 				
+				PanelGallery.refreshGrid();
+				
 				images.setVisible(true);
 				pnl.setVisible(true);
 				
-				revalidate();
-				repaint();
 				
 			}
 		});
@@ -82,6 +87,8 @@ public class PanelImage extends JPanel {
 		btnDelete.addMouseListener(new MouseAdapter () {
 			@Override
 	         public void mousePressed(MouseEvent e) {
+				
+				
 				
 				System.out.println("Delete the following image : " + imageSource.toString());
 				 int response = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer cette image ?");
@@ -91,9 +98,15 @@ public class PanelImage extends JPanel {
 					 System.out.println("supprimer");
 					 imageSource.delete();
 					 getNextImg();
-				 }
-					
+				 }				 
+				 setVisible(false);
 				 
+				 images.remove(index);
+				 
+				 pnl.setVisible(true);
+				 images.setVisible(true);
+
+				 PanelGallery.refreshGrid();
 				 
 			}
 		});

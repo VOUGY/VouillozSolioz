@@ -38,7 +38,6 @@ public class Contacts extends JPanel {
 	protected static int indice = 1;
 
 	public Contacts() {
-
 		
 		viewContact();
 
@@ -123,8 +122,6 @@ public class Contacts extends JPanel {
 		}
 		
 		myPanel.repaint();
-			
-		
 
 	}
 
@@ -202,10 +199,8 @@ public class Contacts extends JPanel {
 	}
 		
 		listerRepertoire(new File("src/application/contact/contactcsv/"));
-		
-			
+					
 	}
-
 
 	public static void addPnlScreen(JPanel pnlScreen, String Name) {
 
