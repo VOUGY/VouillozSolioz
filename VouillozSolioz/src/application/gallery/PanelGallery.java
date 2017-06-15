@@ -217,13 +217,13 @@ public class PanelGallery extends JPanel{
 	
 	//when creating the PanelImages in the array, adapt the max Index & reference
 	//until we arrive on the last image & last cell
-	private void modifyIndexRef(int index, int ref) {
+	public void modifyIndexRef(int index, int ref) {
 		this.maxIndex = index;
 		this.maxRefImg = ref;
 	}
 	
 	//method to write an Image inside our source folder
-	private void saveFile(File imageSource) throws IOException {
+	public void saveFile(File imageSource) throws IOException {
 			BufferedImage image = ImageIO.read(imageSource);
 		    // retrieve image
 		    File outputfile = new File("src/application/gallery/images/zimage" + maxRefImg + ".jpeg");
@@ -234,7 +234,7 @@ public class PanelGallery extends JPanel{
 	}
 	
 	//return the number of images in our Source Folder
-	private int countImages() {
+	public int countImages() {
 		int nbImages;
 		//count the number of images in folder
 		nbImages = imageFolder.listFiles().length;

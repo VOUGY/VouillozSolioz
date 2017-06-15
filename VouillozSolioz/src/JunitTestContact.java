@@ -9,8 +9,7 @@ import application.contact.Contacts;
 
 
 public class JunitTestContact {
-	
-	
+		
 	@Test
 	public void infoContact() {
 		Contact myContact = new Contact("1");
