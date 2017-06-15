@@ -81,7 +81,6 @@ public class PanelHome extends JPanel {
 class ClickContacts implements ActionListener { //event when click on app "Contacts"
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Contacts!");
 		FrameShell.changePnlScreen("Contact");
 		
 	}

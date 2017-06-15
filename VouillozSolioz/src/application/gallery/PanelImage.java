@@ -156,7 +156,6 @@ public class PanelImage extends JPanel {
 		this.imageSource = new File("src/application/gallery/images/" + imageFolderString[refImage]);
 		add(pictureLabel);
 		
-		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage + " nbImages : " + PanelGallery.nbImages);
 	}
 	
 	//method that removes current pictureLabel and gets the previous image in the image source Folder
@@ -186,7 +185,6 @@ public class PanelImage extends JPanel {
 		this.imageSource = new File("src/application/gallery/images/" + imageFolderString[refImage]);
 		add(pictureLabel);
 		
-		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage + " nbImages : " + PanelGallery.nbImages);
 	}
 	
 	//makes sure that image source folder is up to date
