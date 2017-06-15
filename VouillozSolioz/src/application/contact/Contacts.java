@@ -104,7 +104,7 @@ public class Contacts extends JPanel {
 	 * @param PathFile
 	 */
 	public static void deleteContact(String Id, String PathFile) {
-		contacts.remove(Integer.parseInt(Id)-1);
+		contacts.remove(Integer.parseInt(Id));
 			File myfile = new File(PathFile);
 			if(!myfile.delete())
 				System.out.println("Echec");;
