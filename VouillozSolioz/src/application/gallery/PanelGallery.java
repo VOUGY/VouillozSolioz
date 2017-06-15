@@ -28,6 +28,8 @@ public class PanelGallery extends JPanel{
 
 	static JPanel images = new JPanel();
 	static JScrollPane pnl = new JScrollPane(images);
+	static int nbImages;
+	static int y;
 	
 	public PanelGallery() {
 
@@ -42,7 +44,7 @@ public class PanelGallery extends JPanel{
 		//count the number of images in folder
 		File imageFolder = new File("src/application/gallery/images");
 		String[] imageFolderString = imageFolder.list();
-		int nbImages = imageFolder.listFiles().length;
+		this.nbImages = imageFolder.listFiles().length;
 		
 		//size of images panel depends on number of images
 		int size = nbImages*85;
@@ -97,16 +99,12 @@ public class PanelGallery extends JPanel{
 			myPicture = new ImageIcon(myPictureImageResized);
 			
 			JLabel pictureLabel = new JLabel(myPicture);
-		
-			
-		
+	
 			int refImage = i;
 			//when click on one of the images in GridLayout
 			pictureLabel.addMouseListener(new MouseAdapter () {
 				@Override
 		         public void mousePressed(MouseEvent e) {
-
-					System.out.println(refImage);
 
 					images.setVisible(false);
 					pnl.setVisible(false);
@@ -124,11 +122,11 @@ public class PanelGallery extends JPanel{
 			int index = images.getComponentZOrder(pictureLabel);
 			pnl.setVisible(false);
 			
-			System.out.println("Index : " + index);
+			System.out.println("index : " + index);
+			
 			pnlImages[i] = new PanelImage(index, i, images, pnl);
 			add(pnlImages[i]);
-			
-			
+		
 		}
 
 		revalidate();	
@@ -137,8 +135,7 @@ public class PanelGallery extends JPanel{
 	public static void refreshGrid() {
 		
 		pnl.removeAll();
-		pnl.repaint();
-		
+		pnl.repaint();		
 		images.repaint();
 		
 	}

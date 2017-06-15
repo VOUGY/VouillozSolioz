@@ -24,6 +24,8 @@ public class PanelImage extends JPanel {
 	File imageSource;
 	int index;
 	
+	int y = 0;
+	
 	public PanelImage(int index, int refImage, JPanel images, JScrollPane pnl) {
 		
 		this.refImage = refImage;
@@ -47,8 +49,8 @@ public class PanelImage extends JPanel {
 		
 		this.pictureLabel = new JLabel(myPicture);
 
-		JButton btnNext = new JButton("next");
 		JButton btnBack = new JButton("back");
+		JButton btnNext = new JButton("next");
 		JButton btnDelete = new JButton("delete");
 		JButton btnReturn = new JButton("X");
 		
@@ -88,31 +90,29 @@ public class PanelImage extends JPanel {
 			@Override
 	         public void mousePressed(MouseEvent e) {
 				
-				
-				
-				System.out.println("Delete the following image : " + imageSource.toString());
 				 int response = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer cette image ?");
 				 
 				 if(response == 0)
 				 {
-					 System.out.println("supprimer");
 					 imageSource.delete();
-					 getNextImg();
+					 images.remove(index);
 				 }				 
 				 setVisible(false);
-				 
-				 images.remove(index);
-				 
+ 
 				 pnl.setVisible(true);
 				 images.setVisible(true);
 
 				 PanelGallery.refreshGrid();
-				 
+				 nbImages--;
+				 PanelGallery.nbImages--;				 
+				 PanelGallery.y++;
+				 				 
 			}
 		});
 		
-		add(btnNext);
 		add(btnBack);
+		add(btnNext);
+		
 		add(btnDelete);
 		add(btnReturn);
 		add(pictureLabel);
@@ -124,10 +124,18 @@ public class PanelImage extends JPanel {
 		remove(this.pictureLabel);
 
 		//if last image, next goes back to first image
-		if (refImage+1 != nbImages)
-		 this.refImage++;
+		if (refImage+1+PanelGallery.y != nbImages)
+		{
+			this.refImage++;
+			this.index++;
+		}
+		 
 		else
+		{
 			this.refImage = 0;
+			this.index = 0;
+		}
+			
 		
 		File imageFolder = new File("src/application/gallery/images");
 		String[] imageFolderString = imageFolder.list();
@@ -146,11 +154,19 @@ public class PanelImage extends JPanel {
 	public void getPreviousImg() {
 		remove(this.pictureLabel);
 
-		//if last image, next goes back to first image
+		if(index == refImage)
+			index++;
+		//if first image, next goes back to first image
 		if (refImage != 0)
-		 this.refImage--;
+		{
+			this.refImage--;
+			this.index--;
+		}			
 		else
+		{
 			this.refImage = nbImages-1;
+			this.index = nbImages;
+		}			
 		
 		File imageFolder = new File("src/application/gallery/images");
 		String[] imageFolderString = imageFolder.list();
@@ -164,5 +180,8 @@ public class PanelImage extends JPanel {
 		this.pictureLabel = new JLabel(myPicture);
 		this.imageSource = new File("src/application/gallery/images/" + imageFolderString[refImage]);
 		add(pictureLabel);
+		
+		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage);
 	}
+	
 }
