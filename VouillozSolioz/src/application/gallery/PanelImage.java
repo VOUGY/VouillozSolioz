@@ -36,13 +36,14 @@ public class PanelImage extends JPanel {
 		
 	setLayout(new FlowLayout());
 		
+	//check if the image source folder is up to date
 	refreshImageFolder();
 		
 	this.nbImages = imageFolder.listFiles().length;
 		
 	String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
-		
-	System.out.println("opening..." + pictureLink);
+	
+	//retrieve the image based on parameters
 	ImageIcon myPicture = new ImageIcon(pictureLink);
 	Image myPictureImage = myPicture.getImage();
 	Image myPictureImageResized = myPictureImage.getScaledInstance(600, 480, java.awt.Image.SCALE_SMOOTH);
@@ -52,11 +53,13 @@ public class PanelImage extends JPanel {
 		
 	this.pictureLabel = new JLabel(myPicture);
 
+	//navigation buttons
 	JButton btnBack = new JButton("back");
 	JButton btnNext = new JButton("next");
 	JButton btnDelete = new JButton("delete");
 	JButton btnReturn = new JButton("X");
-		
+	
+	//go to the next image in the list
 	btnNext.addMouseListener(new MouseAdapter () {
 		@Override
 	    public void mousePressed(MouseEvent e) {
@@ -65,7 +68,8 @@ public class PanelImage extends JPanel {
 			repaint();
 			}
 		});
-		
+	
+	//go to the previous image in the list
 	btnBack.addMouseListener(new MouseAdapter () {
 		@Override
 	    public void mousePressed(MouseEvent e) {
@@ -74,7 +78,8 @@ public class PanelImage extends JPanel {
 				repaint();
 			}
 		});
-		
+	
+	//return to the display of all images in the gallery
 	btnReturn.addMouseListener(new MouseAdapter () {
 		@Override
 	    public void mousePressed(MouseEvent e) {
@@ -87,7 +92,8 @@ public class PanelImage extends JPanel {
 				
 		}
 	});
-		
+	
+	//delete the current image and return to the display of all images in the gallery
 	btnDelete.addMouseListener(new MouseAdapter () {
 		@Override
 	    public void mousePressed(MouseEvent e) {
@@ -109,7 +115,8 @@ public class PanelImage extends JPanel {
 				 				 
 		}
 	});
-		
+	
+	//add to PanelImage the navigation buttons and the pictureLabel
 	add(btnBack);
 	add(btnNext);
 		
@@ -119,6 +126,7 @@ public class PanelImage extends JPanel {
 
 }
 	
+	//method that removes current pictureLabel and adds the next one in image Folder
 	public void getNextImg() {
 		
 		remove(this.pictureLabel);
@@ -137,6 +145,7 @@ public class PanelImage extends JPanel {
 		}
 			
 
+		//retrieve next image
 		String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
 		ImageIcon myPicture = new ImageIcon(pictureLink);
 		Image myPictureImage = myPicture.getImage();
@@ -150,6 +159,7 @@ public class PanelImage extends JPanel {
 		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage + " nbImages : " + PanelGallery.nbImages);
 	}
 	
+	//method that removes current pictureLabel and gets the previous image in the image source Folder
 	public void getPreviousImg() {
 		remove(this.pictureLabel);
 
@@ -165,6 +175,7 @@ public class PanelImage extends JPanel {
 			index = refImage-1;
 		}			
 
+		//retrieve previous image
 		String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
 		ImageIcon myPicture = new ImageIcon(pictureLink);
 		Image myPictureImage = myPicture.getImage();
@@ -178,6 +189,7 @@ public class PanelImage extends JPanel {
 		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage + " nbImages : " + PanelGallery.nbImages);
 	}
 	
+	//makes sure that image source folder is up to date
 	public void refreshImageFolder() {
 		File imageFolder = new File("src/application/gallery/images");	
 		this.imageFolderString = imageFolder.list();
