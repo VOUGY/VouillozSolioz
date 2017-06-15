@@ -31,93 +31,93 @@ public class PanelImage extends JPanel {
 	
 	public PanelImage(String[] imageFolderString, int index, int refImage, JPanel images, JScrollPane pnl) {
 		
-		this.refImage = refImage;
-		this.index = index;
+	this.refImage = refImage;
+	this.index = index;
 		
-		setLayout(new FlowLayout());
+	setLayout(new FlowLayout());
 		
-		refreshImageFolder();
+	refreshImageFolder();
 		
-		this.nbImages = imageFolder.listFiles().length;
+	this.nbImages = imageFolder.listFiles().length;
 		
-		String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
+	String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
 		
-		System.out.println("opening..." + pictureLink);
-		ImageIcon myPicture = new ImageIcon(pictureLink);
-		Image myPictureImage = myPicture.getImage();
-		Image myPictureImageResized = myPictureImage.getScaledInstance(600, 480, java.awt.Image.SCALE_SMOOTH);
-		myPicture = new ImageIcon(myPictureImageResized);
+	System.out.println("opening..." + pictureLink);
+	ImageIcon myPicture = new ImageIcon(pictureLink);
+	Image myPictureImage = myPicture.getImage();
+	Image myPictureImageResized = myPictureImage.getScaledInstance(600, 480, java.awt.Image.SCALE_SMOOTH);
+	myPicture = new ImageIcon(myPictureImageResized);
 		
-		this.imageSource = new File(pictureLink);
+	this.imageSource = new File(pictureLink);
 		
-		this.pictureLabel = new JLabel(myPicture);
+	this.pictureLabel = new JLabel(myPicture);
 
-		JButton btnBack = new JButton("back");
-		JButton btnNext = new JButton("next");
-		JButton btnDelete = new JButton("delete");
-		JButton btnReturn = new JButton("X");
+	JButton btnBack = new JButton("back");
+	JButton btnNext = new JButton("next");
+	JButton btnDelete = new JButton("delete");
+	JButton btnReturn = new JButton("X");
 		
-		btnNext.addMouseListener(new MouseAdapter () {
-			@Override
-	         public void mousePressed(MouseEvent e) {
-				getNextImg();
-				revalidate();
-				repaint();
+	btnNext.addMouseListener(new MouseAdapter () {
+		@Override
+	    public void mousePressed(MouseEvent e) {
+			getNextImg();
+			revalidate();
+			repaint();
 			}
 		});
 		
-		btnBack.addMouseListener(new MouseAdapter () {
-			@Override
-	         public void mousePressed(MouseEvent e) {
+	btnBack.addMouseListener(new MouseAdapter () {
+		@Override
+	    public void mousePressed(MouseEvent e) {
 				getPreviousImg();
 				revalidate();
 				repaint();
 			}
 		});
 		
-		btnReturn.addMouseListener(new MouseAdapter () {
-			@Override
-	         public void mousePressed(MouseEvent e) {
-				setVisible(false);
+	btnReturn.addMouseListener(new MouseAdapter () {
+		@Override
+	    public void mousePressed(MouseEvent e) {
+			setVisible(false);
 				
-				PanelGallery.refreshGrid();
+			PanelGallery.refreshGrid();
 				
-				images.setVisible(true);
-				pnl.setVisible(true);
+			images.setVisible(true);
+			pnl.setVisible(true);
 				
-			}
-		});
+		}
+	});
 		
-		btnDelete.addMouseListener(new MouseAdapter () {
-			@Override
-	         public void mousePressed(MouseEvent e) {
+	btnDelete.addMouseListener(new MouseAdapter () {
+		@Override
+	    public void mousePressed(MouseEvent e) {
 				
-				 int response = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer cette image ?");
+			int response = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer cette image ?");
 				 
-				 if(response == 0)
-				 {
-					 imageSource.delete();
-					 images.remove(index);
-				 }				 
-				 setVisible(false);
+			if(response == 0)
+			{
+				imageSource.delete();
+				images.remove(index);
+			}				 
+			setVisible(false);
  
-				 pnl.setVisible(true);
-				 images.setVisible(true);
+			pnl.setVisible(true);
+			images.setVisible(true);
 
-				 PanelGallery.refreshGrid();
-				 PanelGallery.nbImages--;				 
+			PanelGallery.refreshGrid();
+			PanelGallery.nbImages--;				 
 				 				 
-			}
-		});
+		}
+	});
 		
-		add(btnBack);
-		add(btnNext);
+	add(btnBack);
+	add(btnNext);
 		
-		add(btnDelete);
-		add(btnReturn);
-		add(pictureLabel);
+	add(btnDelete);
+	add(btnReturn);
+	add(pictureLabel);
 
-	}
+}
 	
 	public void getNextImg() {
 		

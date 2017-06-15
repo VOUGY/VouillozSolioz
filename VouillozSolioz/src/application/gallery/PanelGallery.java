@@ -141,6 +141,14 @@ public class PanelGallery extends JPanel{
 					int retour=choix.showOpenDialog(btnAddImg);
 					if(retour==JFileChooser.APPROVE_OPTION)
 					{
+						//**********************************
+						
+						imageFolder = new File("src/application/gallery/images");
+						imageFolderString = imageFolder.list();
+						
+						int nbImages = countImages();
+
+					
 						 // un fichier a été choisi (sortie par OK)
 						 // nom du fichier  choisi 
 						 choix.getSelectedFile().getName();
@@ -206,12 +214,12 @@ public class PanelGallery extends JPanel{
 		
 	}
 	
-	public void modifyIndexRef(int index, int ref) {
+	private void modifyIndexRef(int index, int ref) {
 		this.maxIndex = index;
 		this.maxRefImg = ref;
 	}
 	
-	public void saveFile(File imageSource) throws IOException {
+	private void saveFile(File imageSource) throws IOException {
 			BufferedImage image = ImageIO.read(imageSource);
 		    // retrieve image
 		    File outputfile = new File("src/application/gallery/images/zimage" + maxRefImg + ".jpeg");
@@ -221,7 +229,7 @@ public class PanelGallery extends JPanel{
 			this.imageFolderString = imageFolder.list();
 	}
 	
-	public int countImages() {
+	private int countImages() {
 		int nbImages;
 		//count the number of images in folder
 		nbImages = imageFolder.listFiles().length;
