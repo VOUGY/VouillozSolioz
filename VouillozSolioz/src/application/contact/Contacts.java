@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,36 +27,43 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.event.MouseInputAdapter;
 
 public class Contacts extends JPanel {
+	final static String PATHFILE = "src/application/contact/contactcsv/";
 	
 	protected static ArrayList<Contact> contacts = new ArrayList<Contact>();
-	static JPanel myPanel = new JPanel();
+	protected static int indice = 1;
+	
 	JButton btnAdd = new JButton("New Contact");
-
-	// NEW
 	protected static CardLayout cldScreen = new CardLayout();
+	static JPanel myPanel = new JPanel();
 	protected static JPanel pnlScreens = new JPanel();
 	static ArrayList<JPanel> pnlApp = new ArrayList<JPanel>();
-	protected static int indice = 1;
 
 	public Contacts() {
 
-		
-		viewContact();
-
 		// create JScrollPane
-		JPanel mylistcontact = new JPanel();
+
+		
 		JScrollPane pnl = new JScrollPane(myPanel);
 		pnl.setLayout(new ScrollPaneLayout());
-		pnl.setMinimumSize(new Dimension(480, 660));
+		pnl.setMinimumSize(new Dimension(480, 600));
 		pnl.setPreferredSize(new Dimension(480, 660));
 		pnl.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		pnl.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
-		// add images Panel to scrollPane & add scrollPane to PanelGallery
-		// add(pnl);
-		// add(myPanel);
-
+		//increase speed of vertical bar scrolling
+		pnl.getVerticalScrollBar().setUnitIncrement(16);
+		
+		
+		JPanel mybtn = new JPanel();
+		mybtn.setPreferredSize(new Dimension(480, 50));
+		mybtn.add(btnAdd);
+		
+		JPanel mylistcontact = new JPanel();
+		mylistcontact.setLayout(new BoxLayout(mylistcontact, BoxLayout.PAGE_AXIS));
+	
+		mylistcontact.add(mybtn);
 		mylistcontact.add(pnl);
+		
+	
 		pnlApp.add(mylistcontact);
 		
 		pnlScreens.setLayout(cldScreen);
@@ -67,10 +75,10 @@ public class Contacts extends JPanel {
 		myPanel.setMinimumSize(new Dimension(480, 660));
 		myPanel.setPreferredSize(new Dimension(480, 5000));
 		
-		listerRepertoire(new File("src/application/contact/contactcsv"));
+		listinFolder(new File(PATHFILE));
 		
 		btnAdd.addActionListener(new actAddContact());
-		myPanel.add(btnAdd);
+	
 		
 	}
 	public static void addContactPan(Contact contact)
@@ -88,12 +96,20 @@ public class Contacts extends JPanel {
 
 	}
 
+	/**
+	 * View in console of the contacts' list
+	 */
 	public void viewContact() {
 		for (Contact contact : contacts) {
 			System.out.println(contact.toString());
 		}
 	}
 
+	/**
+	 * 
+	 * @param Id 
+	 * @param PathFile
+	 */
 	public static void deleteContact(String Id, String PathFile) {
 		contacts.remove(Integer.parseInt(Id)-1);
 			File myfile = new File(PathFile);
@@ -104,18 +120,24 @@ public class Contacts extends JPanel {
 
 	}
 
-	public static void listerRepertoire(File repertoire) {
+	/**
+	 * Can find ever contact and add in the arraylist of contacts 
+	 * add Panel in the cardlayout
+	 * 
+	 * @param re folder of contact
+	 */
+	public static void listinFolder(File folder) {
 
-		String[] listefichiers;
+		String[] filelist;
 		myPanel.removeAll();
 		int i;
 		contacts.removeAll(contacts);
 		
-		listefichiers = repertoire.list();
-		for (i = 0; i < listefichiers.length; i++) {
-			if (listefichiers[i].endsWith(".txt") == true) {
+		filelist = folder.list();
+		for (i = 0; i < filelist.length; i++) {
+			if (filelist[i].endsWith(".txt") == true) {
 				contacts.add(
-						new Contact(Integer.toString(i), "src/application/contact/contactcsv/" + listefichiers[i]));
+						new Contact(Integer.toString(i), PATHFILE + filelist[i]));
 			}
 		}
 		for (Contact contact : contacts) {
@@ -128,22 +150,6 @@ public class Contacts extends JPanel {
 
 	}
 
-	public class MyMouseListener extends MouseAdapter {
-
-		int iD;
-
-		public MyMouseListener(int iD) {
-			this.iD = iD;
-		}
-
-		public void mouseClicked(MouseEvent e) {
-			// JButton temp = (JButton) e.getSource();
-
-			System.out.println(iD);
-			// myPanel.add(contacts.get(temp.getiD()).getMyPanelContactMax());
-		}
-	}
-	
 	/**
 	 * Use when you fill a new contact
 	 * @param name
@@ -154,7 +160,7 @@ public class Contacts extends JPanel {
 	 */
 	public static void AddContact(String name, String firstName, String number,String eMail, String pathPicture) 
 	{			
-		String nameFile = "src/application/contact/contactcsv/"+firstName + name + ".txt";
+		String nameFile = PATHFILE +firstName + name + ".txt";
 				try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 	              new FileOutputStream(nameFile), "utf-8"))) {
 	   writer.write(name + ";" + firstName +";"+number+";"+eMail+";"+pathPicture);
@@ -169,10 +175,8 @@ public class Contacts extends JPanel {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		Contact mynewcontact = new Contact(String.valueOf(contacts.size()+1),nameFile);
-		contacts.add(mynewcontact);
-		addContactPan(mynewcontact);
-			
+				listinFolder(new File(PATHFILE));
+			changePnlScreen("Home");
 	}
 	/**
 	 * Use when you fill a new contact
@@ -191,22 +195,23 @@ public class Contacts extends JPanel {
 	   writer.write(name + ";" + firstName +";"+number+";"+eMail+";"+pathPicture);
 	  
 	} catch (UnsupportedEncodingException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		
-		listerRepertoire(new File("src/application/contact/contactcsv/"));
+		listinFolder(new File(PATHFILE));
 		
 			
 	}
 
-
+ /**
+  * 
+  * @param pnlScreen  
+  * @param Name info to refind the pnlScreen
+  */
 	public static void addPnlScreen(JPanel pnlScreen, String Name) {
 
 		pnlScreens.add(pnlScreen, Name);

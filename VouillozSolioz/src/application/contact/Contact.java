@@ -47,23 +47,44 @@ public class Contact {
 		read(pathFile,mesinfos);
 	}
 	
+	/**
+	 * Create PanelContactMin
+	 * @return Panel --- FN Name Firstname  ---- 
+	 */
 	public PanelContactMin getMyPanelContactMin() {
 		myPanelContactMin = new PanelContactMin(Integer.parseInt(mesinfos[0]));
 		myPanelContactMin.setInfos(mesinfos[2],mesinfos[3]);
 		return myPanelContactMin;
 	}
+	/**
+	 * Create PanelContactMax
+	 * @return Panel with full info of Contact 
+	 */
 	public PanelContactMax getMyPanelContactMax() {
 		myPanelContactMax = new PanelContactMax(mesinfos);
 		return myPanelContactMax;
 	}
-	
+	/**
+	 * 
+	 * @return get info of contact
+	 */
 	public String[] getMesinfos() {
 		return mesinfos;
 	}
+	/**
+	 * 
+	 * @return set info of contact
+	 */
 	public void setMesinfos(String[] mesinfos) {
 		this.mesinfos = mesinfos;
 	}
-	
+	/**
+	 * @return Get the Id of Contact
+	 */
+	public String getId()
+	{
+		return mesinfos[0];
+	}
 	
 	/**
 	 * Use when you create a new Contact
@@ -103,9 +124,6 @@ public class Contact {
 		mesinfos[6] = pathPicture;
 		
 	}
-	
-	
-
 
 	/**
 	 * Read the file *.csv
@@ -140,8 +158,5 @@ public class Contact {
 		}
 		
 	}
-	public String getId()
-	{
-		return mesinfos[0];
-	}
+	
 }
