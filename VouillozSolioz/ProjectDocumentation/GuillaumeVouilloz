@@ -1,11 +1,11 @@
 12 Mai 2017
 	[ENSEMBLE]
 Choix de l'interface de notre smartphone (création d'un modèle sur logiciel)
-19 Mai 2017
+19.05.2017
 	--	Mise en place du CardLayout pour le changement entre chaque app 
 	--	Création d'une méthode change pnl en static pour le changment dans le panelHome
 	--  Mise en place de différents classes pour l'application Contact
-20 Mai 2017
+20.05.2017
 	--	Problème avec le Git impossible de synchroniser certains fichiers -> upload depuis github directement
 	--	Reflexion sur comment devait travailler les classes entre elle, modification de la structure 
 	-- 	pensait précedemment. Contact contient un tableau d'info, la lecture et l'écriture se fait directement
@@ -13,6 +13,25 @@ Choix de l'interface de notre smartphone (création d'un modèle sur logiciel)
 	--	ces lectures de fichiers (car on fait la même chose au final)
 	--	Partir sur un modèle déjà console avant de perdre du temps sur le graphique
 	--  à définir si il y a des modifications à faire dans le frameshell du jscrollpane (polymorphisme ? à discuter)
-2 Juin 2017
+02.06.2017
 	-- read and write in CSV
 	-- afficher dans une console
+09.06.2017
+--------
+-- Creation des panels pour les contacts + les évènements sur les boutons edit/delete
+-- Affichage des contacts dans le panel principal avec barre de défilement
+-- restructration du code
+12.06.2017
+--------
+-- Création d'un contact + Améloration du panel max pour le contact
+13.06.2017
+--------
+Ajouter les options pour modifier, supprimer, ajouter manque encore la photo
+
+15.06.2017
+--------
+Ajout de la photo + Eviter qu'il ne remplisse pas tous les champs 
+COmmentaire
+Test des différentes fonctionnalités. 
+Javadoc / exportation en jar. 
+Finalisation du journal de bord. 
