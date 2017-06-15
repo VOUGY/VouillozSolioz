@@ -23,29 +23,32 @@ public class PanelImage extends JPanel {
 	int nbImages;
 	File imageSource;
 	int index;
+	String[] imageFolderString;
+	
+	static File imageFolder = new File("src/application/gallery/images");	
 	
 	int y = 0;
 	
-	public PanelImage(int index, int refImage, JPanel images, JScrollPane pnl) {
+	public PanelImage(String[] imageFolderString, int index, int refImage, JPanel images, JScrollPane pnl) {
 		
 		this.refImage = refImage;
 		this.index = index;
 		
 		setLayout(new FlowLayout());
 		
-		File imageFolder = new File("src/application/gallery/images");
-		
-		String[] imageFolderString = imageFolder.list();
+		refreshImageFolder();
 		
 		this.nbImages = imageFolder.listFiles().length;
 		
 		String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
+		
+		System.out.println("opening..." + pictureLink);
 		ImageIcon myPicture = new ImageIcon(pictureLink);
 		Image myPictureImage = myPicture.getImage();
 		Image myPictureImageResized = myPictureImage.getScaledInstance(600, 480, java.awt.Image.SCALE_SMOOTH);
 		myPicture = new ImageIcon(myPictureImageResized);
 		
-		this.imageSource = new File("src/application/gallery/images/" + imageFolderString[refImage]);
+		this.imageSource = new File(pictureLink);
 		
 		this.pictureLabel = new JLabel(myPicture);
 
@@ -82,7 +85,6 @@ public class PanelImage extends JPanel {
 				images.setVisible(true);
 				pnl.setVisible(true);
 				
-				
 			}
 		});
 		
@@ -103,9 +105,7 @@ public class PanelImage extends JPanel {
 				 images.setVisible(true);
 
 				 PanelGallery.refreshGrid();
-				 nbImages--;
 				 PanelGallery.nbImages--;				 
-				 PanelGallery.y++;
 				 				 
 			}
 		});
@@ -124,21 +124,18 @@ public class PanelImage extends JPanel {
 		remove(this.pictureLabel);
 
 		//if last image, next goes back to first image
-		if (refImage+1+PanelGallery.y != nbImages)
+		if (index != PanelGallery.nbImages)
 		{
-			this.refImage++;
-			this.index++;
+			refImage++;
+			index++;
 		}
 		 
 		else
 		{
-			this.refImage = 0;
-			this.index = 0;
+			refImage = 0;
+			index = 1;
 		}
 			
-		
-		File imageFolder = new File("src/application/gallery/images");
-		String[] imageFolderString = imageFolder.list();
 
 		String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
 		ImageIcon myPicture = new ImageIcon(pictureLink);
@@ -149,27 +146,24 @@ public class PanelImage extends JPanel {
 		this.pictureLabel = new JLabel(myPicture);
 		this.imageSource = new File("src/application/gallery/images/" + imageFolderString[refImage]);
 		add(pictureLabel);
+		
+		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage + " nbImages : " + PanelGallery.nbImages);
 	}
 	
 	public void getPreviousImg() {
 		remove(this.pictureLabel);
 
-		if(index == refImage)
-			index++;
 		//if first image, next goes back to first image
 		if (refImage != 0)
 		{
-			this.refImage--;
-			this.index--;
+			refImage--;
+			index--;
 		}			
 		else
 		{
-			this.refImage = nbImages-1;
-			this.index = nbImages;
+			refImage = PanelGallery.nbImages-1;
+			index = refImage-1;
 		}			
-		
-		File imageFolder = new File("src/application/gallery/images");
-		String[] imageFolderString = imageFolder.list();
 
 		String pictureLink = "src/application/gallery/images/" + imageFolderString[refImage];
 		ImageIcon myPicture = new ImageIcon(pictureLink);
@@ -181,7 +175,12 @@ public class PanelImage extends JPanel {
 		this.imageSource = new File("src/application/gallery/images/" + imageFolderString[refImage]);
 		add(pictureLabel);
 		
-		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage);
+		System.out.println("y : " + PanelGallery.y + " index : " + index + " refImage : " + refImage + " nbImages : " + PanelGallery.nbImages);
+	}
+	
+	public void refreshImageFolder() {
+		File imageFolder = new File("src/application/gallery/images");	
+		this.imageFolderString = imageFolder.list();
 	}
 	
 }

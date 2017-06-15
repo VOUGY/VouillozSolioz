@@ -33,9 +33,7 @@ public class Main {
 
 		FrameShell.addPnlScreen(pnlGallery,"Gallery");
 		FrameShell.addPnlScreen(pnlContacts,"Contact");
-		
 
-	
 		myShell.setVisible(true);
 	
 	}

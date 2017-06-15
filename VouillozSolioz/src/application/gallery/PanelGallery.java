@@ -8,13 +8,21 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import application.contact.Contact;
 import application.gallery.PanelGallery;
 import smartphone.FrameShell;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -23,16 +31,27 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 
-
 public class PanelGallery extends JPanel{
 
 	static JPanel images = new JPanel();
 	static JScrollPane pnl = new JScrollPane(images);
 	static int nbImages;
 	static int y;
+	static int maxRefImg = 0;
+	static int maxIndex = 0;
+	
+	static File imageFolder = new File("src/application/gallery/images");
+	static String[] imageFolderString = imageFolder.list();
 	
 	public PanelGallery() {
 
+		//btnAddImg
+		JButton btnAddImg = new JButton("+");
+						
+		btnAddImg.setFont(new Font("Arial", Font.PLAIN, 80));
+						
+		images.add(btnAddImg);
+				
 		//PanelGallery format
 		CardLayout cldScreen = new CardLayout();
 		setLayout(cldScreen);
@@ -40,11 +59,8 @@ public class PanelGallery extends JPanel{
 		setBackground(Color.BLACK);
 		setLayout(new CardLayout());
 		setPreferredSize(new Dimension(480, 770));
-		
-		//count the number of images in folder
-		File imageFolder = new File("src/application/gallery/images");
-		String[] imageFolderString = imageFolder.list();
-		this.nbImages = imageFolder.listFiles().length;
+
+		this.nbImages = countImages();
 		
 		//size of images panel depends on number of images
 		int size = nbImages*85;
@@ -54,19 +70,6 @@ public class PanelGallery extends JPanel{
 		images.setPreferredSize(new Dimension(480, size));
 		images.setBackground(Color.BLACK);
 		images.setVisible(true);
-		
-		JButton btnAddImg = new JButton("+");
-		
-		btnAddImg.setFont(new Font("Arial", Font.PLAIN, 80));
-		
-		images.add(btnAddImg);
-		
-		btnAddImg.addMouseListener(new MouseAdapter () {
-			@Override
-	         public void mousePressed(MouseEvent e) {
-				final JFileChooser fc = new JFileChooser();
-			}
-		});
 		
 		//create JScrollPane
 		JScrollPane pnl = new JScrollPane(images);
@@ -92,7 +95,7 @@ public class PanelGallery extends JPanel{
 		for(int i = 0; i<nbImages;i++) 
 		{
 			
-			String pictureLink = "src/application/gallery/images/" + imageFolderString[i];
+			String pictureLink = "src/application/gallery/images/" + this.imageFolderString[i];
 			ImageIcon myPicture = new ImageIcon(pictureLink);
 			Image myPictureImage = myPicture.getImage();
 			Image myPictureImageResized = myPictureImage.getScaledInstance(300, 240, java.awt.Image.SCALE_SMOOTH);
@@ -101,6 +104,7 @@ public class PanelGallery extends JPanel{
 			JLabel pictureLabel = new JLabel(myPicture);
 	
 			int refImage = i;
+			modifyIndexRef(refImage+1, refImage);
 			//when click on one of the images in GridLayout
 			pictureLabel.addMouseListener(new MouseAdapter () {
 				@Override
@@ -114,6 +118,7 @@ public class PanelGallery extends JPanel{
 					pnlImages[refImage].revalidate();
 					pnlImages[refImage].repaint();
 
+
 				}
 			});
 
@@ -122,13 +127,74 @@ public class PanelGallery extends JPanel{
 			int index = images.getComponentZOrder(pictureLabel);
 			pnl.setVisible(false);
 			
-			System.out.println("index : " + index);
 			
-			pnlImages[i] = new PanelImage(index, i, images, pnl);
+			pnlImages[i] = new PanelImage(imageFolderString, index, i, images, pnl);
 			add(pnlImages[i]);
 		
 		}
+					
+		btnAddImg.addMouseListener(new MouseAdapter () {
+				@Override
+			        public void mousePressed(MouseEvent e) {
+						
+					JFileChooser choix = new JFileChooser();
+					int retour=choix.showOpenDialog(btnAddImg);
+					if(retour==JFileChooser.APPROVE_OPTION)
+					{
+						 // un fichier a été choisi (sortie par OK)
+						 // nom du fichier  choisi 
+						 choix.getSelectedFile().getName();
+						 // chemin absolu du fichier choisi
+						 choix.getSelectedFile().getAbsolutePath();
+						   
+						   
+						 String pictureLinkAdded = choix.getSelectedFile().getAbsolutePath();
+						 ImageIcon myPictureAdded = new ImageIcon(pictureLinkAdded);
+						 Image myPictureImageAdded = myPictureAdded.getImage();
+						 Image myPictureImageResizedAdded = myPictureImageAdded.getScaledInstance(300, 240, java.awt.Image.SCALE_SMOOTH);
+						 myPictureAdded = new ImageIcon(myPictureImageResizedAdded);
+							
+						 JLabel pictureLabel = new JLabel(myPictureAdded);
+						 File FileSource = new File(pictureLinkAdded);
+						   
+						 try {
+							saveFile(FileSource);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						   
+						 pictureLabel.addMouseListener(new MouseAdapter () {
+							 @Override
+					public void mousePressed(MouseEvent e) {
+						
+						imageFolder = new File("src/application/gallery/images");
+						imageFolderString = imageFolder.list();
+							
+						images.setVisible(false);
+							pnl.setVisible(false);
+									
+							PanelImage pnlImage = new PanelImage(imageFolderString, maxIndex, maxRefImg, images, pnl);
+							
 
+							pnlImage.revalidate();
+							pnlImage.repaint();
+							
+							pnlImage.setVisible(true);
+							
+							maxIndex++;
+							maxRefImg++;
+							
+						}
+						});
+
+				images.add(pictureLabel);
+	
+				images.revalidate();
+				}			
+			}
+		});
+				
 		revalidate();	
 	}
 
@@ -138,5 +204,27 @@ public class PanelGallery extends JPanel{
 		pnl.repaint();		
 		images.repaint();
 		
+	}
+	
+	public void modifyIndexRef(int index, int ref) {
+		this.maxIndex = index;
+		this.maxRefImg = ref;
+	}
+	
+	public void saveFile(File imageSource) throws IOException {
+			BufferedImage image = ImageIO.read(imageSource);
+		    // retrieve image
+		    File outputfile = new File("src/application/gallery/images/zimage" + maxRefImg + ".jpeg");
+		    ImageIO.write(image, "jpeg", outputfile);
+		    this.nbImages++;
+		    this.imageFolder = new File("src/application/gallery/images");
+			this.imageFolderString = imageFolder.list();
+	}
+	
+	public int countImages() {
+		int nbImages;
+		//count the number of images in folder
+		nbImages = imageFolder.listFiles().length;
+		return nbImages;
 	}
 }
