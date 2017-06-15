@@ -27,15 +27,26 @@ public class PanelHome extends JPanel {
 	
 	public PanelHome() {
 		
-		JButton btnContacts = new JButton();
-		JButton btnGallery = new JButton();
+		JButton btnContacts = new JButton() {
+			{
+				setSize(30,30);
+				setMaximumSize(getSize());
+			}
+		};
+		
+		JButton btnGallery = new JButton() {
+			{
+				setSize(30,30);
+				setMaximumSize(getSize());
+			}
+		};
 		
 		//applying images to button
 
 		//Apply contact image to btnContacts
 		try {
 			Image imgContacts;
-			imgContacts = ImageIO.read(getClass().getResource("/icons/contacts.jpg"));//path
+			imgContacts = ImageIO.read(getClass().getResource("/icons/contacts.png"));//path
 			btnContacts.setIcon(new ImageIcon(imgContacts));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -70,7 +81,6 @@ public class PanelHome extends JPanel {
 class ClickContacts implements ActionListener { //event when click on app "Contacts"
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Contacts!");
 		FrameShell.changePnlScreen("Contact");
 		
 	}
