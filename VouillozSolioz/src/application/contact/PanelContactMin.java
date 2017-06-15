@@ -13,13 +13,18 @@ import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import java.awt.Component;
 import javax.swing.JButton;
-
+/**
+ * Screen with info Name and FirstName of contact
+ * @author guill
+ *
+ */
 public class PanelContactMin extends JPanel {
 
 	JButton btnNomPrenom = new JButton ();
 	JLabel lblAbrevation = new JLabel();
 	int iD;
-//	MyMouseListener mesinfo = new MyMouseListener();
+
+	
 	public PanelContactMin (int iD)
 	{
 		FlowLayout flowLayout = (FlowLayout) getLayout();
@@ -47,7 +52,7 @@ public class PanelContactMin extends JPanel {
 		btnNomPrenom.setPreferredSize(new Dimension(400, 70));
 		btnNomPrenom.setFont(new Font("Arial", Font.BOLD, 25));
 		btnNomPrenom.addMouseListener(new MyMouseListener(iD));
-	//	addMouseListener(mesinfo);
+	
 		add(lblAbrevation);
 		add(btnNomPrenom);
 		

@@ -152,10 +152,12 @@ public class Contact {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		//implement information in contact
 		for (int i = 0; i < info.length; i++) {
 			mesinfos[i+2] = info[i];
 		}
+		if(mesinfos[6].isEmpty())
+			mesinfos[6] = "null";
 		
 	}
 	

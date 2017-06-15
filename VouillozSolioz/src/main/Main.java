@@ -1,20 +1,14 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.io.File;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
 import application.contact.Contacts;
 //import application.contact.Contact;
-import application.contact.PanelContactMin;
-import application.contact.PanelContacts;
+
 //import application.contact.PanelContacts;
 import smartphone.FrameShell;
 import application.gallery.PanelGallery;
-import application.gallery.PanelImage;
+
 import application.home.PanelHome;
 public class Main {
 

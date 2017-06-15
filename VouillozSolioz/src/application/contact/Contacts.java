@@ -41,8 +41,6 @@ public class Contacts extends JPanel {
 	public Contacts() {
 
 		// create JScrollPane
-
-		
 		JScrollPane pnl = new JScrollPane(myPanel);
 		pnl.setLayout(new ScrollPaneLayout());
 		pnl.setMinimumSize(new Dimension(480, 600));
@@ -52,22 +50,21 @@ public class Contacts extends JPanel {
 		//increase speed of vertical bar scrolling
 		pnl.getVerticalScrollBar().setUnitIncrement(16);
 		
-		
+		// create Pnlbtn
 		JPanel mybtn = new JPanel();
 		mybtn.setPreferredSize(new Dimension(480, 50));
 		mybtn.add(btnAdd);
+		btnAdd.addActionListener(new actAddContact());
+		
 		
 		JPanel mylistcontact = new JPanel();
 		mylistcontact.setLayout(new BoxLayout(mylistcontact, BoxLayout.PAGE_AXIS));
-	
 		mylistcontact.add(mybtn);
 		mylistcontact.add(pnl);
-		
-	
-		pnlApp.add(mylistcontact);
+
 		
 		pnlScreens.setLayout(cldScreen);
-		pnlScreens.add(pnlApp.get(0), "Home");
+		pnlScreens.add(mylistcontact, "Home");
 		
 		add(pnlScreens);
 		cldScreen.show(pnlScreens, "Home");
@@ -77,24 +74,20 @@ public class Contacts extends JPanel {
 		
 		listinFolder(new File(PATHFILE));
 		
-		btnAdd.addActionListener(new actAddContact());
+		
 	
 		
 	}
+	/**
+	 * Add PanelMax and Min in cardlayout
+	 * @param contact
+	 */
 	public static void addContactPan(Contact contact)
 	{
 		myPanel.add(contact.getMyPanelContactMin());
 		pnlScreens.add(contact.getMyPanelContactMax(), contact.getId());
 	}
-	public class actAddContact implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			pnlScreens.add(new PanelContactMax(), "Add");
-			Contacts.changePnlScreen("Add");
-		}
-
-	}
+	
 
 	/**
 	 * View in console of the contacts' list
@@ -106,7 +99,7 @@ public class Contacts extends JPanel {
 	}
 
 	/**
-	 * 
+	 * Delete Contact (file + cardlayout)
 	 * @param Id 
 	 * @param PathFile
 	 */
@@ -206,26 +199,47 @@ public class Contacts extends JPanel {
 
 
  /**
-  * 
+  	* Add jPanel in cardlayout
   * @param pnlScreen  
   * @param Name info to refind the pnlScreen
   */
-
 	public static void addPnlScreen(JPanel pnlScreen, String Name) {
 
 		pnlScreens.add(pnlScreen, Name);
 		indice++;
 	}
+	
+	/**
+	 * Delete jpanel in cardlayout
+	 * @param Id id of contact
+	 */
 	public static void delPnlScreen(int Id) {
 
 		pnlScreens.remove(Id+1);
 		myPanel.remove(Id);
 		indice--;
 	}
-
-
+/**
+ 	* Change jpanel in cardlayout
+ * @param stScreen name au jpanel
+ */
 	public static void changePnlScreen(String stScreen) {
 		cldScreen = (CardLayout) pnlScreens.getLayout();
 		cldScreen.show(pnlScreens, stScreen);
+	}
+	
+	/**
+	 * Creation of a new Contact
+	 * @author guill
+	 *
+	 */
+	public class actAddContact implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			pnlScreens.add(new PanelContactMax(), "Add");
+			Contacts.changePnlScreen("Add");
+		}
+
 	}
 }

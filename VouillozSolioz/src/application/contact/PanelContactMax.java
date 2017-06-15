@@ -4,26 +4,32 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.sound.midi.MidiDevice.Info;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-
 import smartphone.FrameShell;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Button;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+
+import javax.swing.ImageIcon;
 
 public class PanelContactMax extends JPanel {
 
@@ -31,11 +37,12 @@ public class PanelContactMax extends JPanel {
 	JLabel[] mylblinfotitle = new JLabel[4];
 	String[] myinfotitle = { "Name", "FirstName", "Call ID", "EMail" };
 	String[] myinfo;
-	private JTextField myName;
-	private JTextField textField;
-	JButton btnEdit;
-	JButton btnDelete;
+	JButton btnEdit, btnDelete, btnPicture;
 
+	/**
+	 * New Class with info of contact 
+	 * @param myinfo 
+	 */
 	public PanelContactMax(String[] myinfo) {
 		// COntact
 		this.myinfo = myinfo;
@@ -51,13 +58,16 @@ public class PanelContactMax extends JPanel {
 
 		CreateHead(false);
 		CreatePicture();
-		ViewsInfos(myinfo, mytxtfdinfo, mylblinfotitle, myinfotitle);
+		ViewsInfos();
 
 		// lblAbrevation.setBackground(Color.BLUE);
 		// lblAbrevation.setOpaque(true);
 
 	}
 
+	/**
+	 * New Class without info
+	 */
 	public PanelContactMax() {
 		// COntact
 		this.myinfo = new String[7];
@@ -70,18 +80,25 @@ public class PanelContactMax extends JPanel {
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-
+		for (int i = 0; i < myinfo.length; i++) {
+			myinfo[i] = "null";
+		}
+		
 		CreateHead(true);
 		CreatePicture();
-		CreateInfos(mytxtfdinfo, mylblinfotitle, myinfotitle);
-
+		CreateInfos();
+		btnPicture.addActionListener(new actPicture());
+		
 		// lblAbrevation.setBackground(Color.BLUE);
 		// lblAbrevation.setOpaque(true);
 
 	}
 
-	private void ViewsInfos(String[] mesinfo, JTextField[] mytxtfdinfo, JLabel[] mylblinfotitle, String[] myinfotitle) {
-		// TODO Auto-generated method stub
+	/**
+	 * Fill the jpanel with info of contact
+	 */
+	private void ViewsInfos() {
+		
 		int temp = 4;
 		for (int i = 0; i < mytxtfdinfo.length; i++) {
 
@@ -98,7 +115,7 @@ public class PanelContactMax extends JPanel {
 
 			temp++;
 
-			mytxtfdinfo[i] = new JTextField(mesinfo[i + 2]);
+			mytxtfdinfo[i] = new JTextField(myinfo[i + 2]);
 			mytxtfdinfo[i].setFont(new Font("Samsung InterFace", Font.PLAIN, 18));
 			mytxtfdinfo[i].setHorizontalAlignment(SwingConstants.LEFT);
 			mytxtfdinfo[i].setEditable(false);
@@ -110,13 +127,17 @@ public class PanelContactMax extends JPanel {
 			gbc_txt.gridx = 0;
 			gbc_txt.gridy = temp;
 			add(mytxtfdinfo[i], gbc_txt);
-			// mytxtfdinfo[i].setColumns(10);
-
+			
 			temp++;
 		}
+		
 	}
 
-	private void CreateInfos(JTextField[] mytxtfdinfo, JLabel[] mylblinfotitle, String[] myinfotitle) {
+	/**
+	 * 
+	 * Create interface for the new Contact
+	 */
+	private void CreateInfos() {
 		// TODO Auto-generated method stub
 		int temp = 4;
 		for (int i = 0; i < mytxtfdinfo.length; i++) {
@@ -141,28 +162,34 @@ public class PanelContactMax extends JPanel {
 			mytxtfdinfo[i].addMouseListener(new MouseListener() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
 					JTextField texteField = ((JTextField) e.getSource());
 					texteField.setText("");
 					texteField.getFont().deriveFont(Font.PLAIN);
 					texteField.setForeground(Color.black);
 					texteField.removeMouseListener(this);
 				}
-				@Override
-				public void mouseEntered(MouseEvent arg0) {
-					// TODO Auto-generated method stub
 
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					JTextField texteField = ((JTextField) e.getSource());
+					texteField.setText("");
+					texteField.getFont().deriveFont(Font.PLAIN);
+					texteField.setForeground(Color.black);
+					texteField.removeMouseListener(this);
 				}
+
 				@Override
 				public void mouseExited(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 
 				}
+
 				@Override
 				public void mousePressed(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 
 				}
+
 				@Override
 				public void mouseReleased(MouseEvent arg0) {
 					// TODO Auto-generated method stub
@@ -184,21 +211,48 @@ public class PanelContactMax extends JPanel {
 		}
 	}
 
+	/**
+	 * Show the picture
+	 */
 	private void CreatePicture() {
+		File myfile = new File("");
+		if (!myinfo[6].isEmpty())
+			myfile = new File(myinfo[6]);
 
+		btnPicture = new JButton();
+
+		if (myfile.exists()) {
+			ImageIcon myPicture = new ImageIcon(myinfo[6]);
+			Image myPictureImage = myPicture.getImage();
+			Image myPictureImageResized = myPictureImage.getScaledInstance(175, 175, java.awt.Image.SCALE_SMOOTH);
+			myPicture = new ImageIcon(myPictureImageResized);
+			btnPicture.setIcon(myPicture);
+		} else {
+			btnPicture.setText("No photo");
+		}
 		// TODO Auto-generated method stub
-		JButton btnPicture = new JButton("Photo");
+
+		btnPicture.setBorderPainted(false);
+		btnPicture.setFocusTraversalKeysEnabled(false);
+		btnPicture.setFocusPainted(false);
+		btnPicture.setOpaque(false);
+	//	btnPicture.addActionListener(new actPicture());
+		
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.gridwidth = 2;
 		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 3;
-		btnPicture.setEnabled(false);
+		// btnPicture.setEnabled(false);
 		add(btnPicture, gbc_btnNewButton);
 
 	}
 
+	/**
+	 * Create head of panel
+	 * @param NewContact new contact or contact already exist
+	 */
 	public void CreateHead(boolean NewContact) {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new actEdit());
@@ -234,44 +288,87 @@ public class PanelContactMax extends JPanel {
 		add(btnDelete, gbc_btnDelete);
 	}
 
-	public class actEdit implements ActionListener {
+	/**
+	 * check if all textfield is not empty
+	 * @return isEmpty or not
+	 */
+	private boolean CheckFieldEmpty() {
+		for (int i = 0; i < mytxtfdinfo.length; i++) {
+			myinfo[i + 2] = mytxtfdinfo[i].getText();
+			System.out.println(myinfo[i + 2]);
+			if (myinfo[i + 2].isEmpty()) {
+
+				mytxtfdinfo[i].setBackground(Color.red);
+				return false;
+			}
+		}
+		return true;
+	}
+ /**
+  * Show the Gallery to choose the picture
+  * @author guill
+  *
+  */
+	public class actPicture implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+		/*	JFileChooser fileChooser = new JFileChooser(new File("src/application/gallery/images/"));
+			fileChooser.showOpenDialog(null);
+			myinfo[6] = "src/application/gallery/images/" + fileChooser.getSelectedFile().getName();*/
+			
+			Contacts.addPnlScreen(new PanelGalleryChoose(myinfo[0]), "Gallery");
+			Contacts.changePnlScreen("Gallery");
+			
+		}
+
+	}
+
+	/**
+	 * Various action of ever button
+	 * @author guill
+	 *
+	 */
+	public class actEdit implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if (((JButton) e.getSource()).getText() == "Edit")
+			myinfo[6] = PanelGalleryChoose.getPictureLink();
+			
+			if (((JButton) e.getSource()).getText() == "Edit") {
 				for (int i = 0; i < mytxtfdinfo.length; i++) {
 					mytxtfdinfo[i].setEditable(true);
 					btnEdit.setText("Validate");
 					btnDelete.setVisible(true);
-
+					btnPicture.addActionListener(new actPicture());
 				}
-			else if (((JButton) e.getSource()).getText() == "Validate") {
+			
+		}else if(((JButton)e.getSource()).getText()=="Validate"&&
+
+		CheckFieldEmpty()) {
 				for (int i = 0; i < mytxtfdinfo.length; i++) {
 					mytxtfdinfo[i].setEditable(false);
 					btnEdit.setText("Edit");
-					Contacts.ModifyContact(myinfo[0], myinfo[1],
-							mytxtfdinfo[0].getText(), mytxtfdinfo[1].getText(), mytxtfdinfo[2].getText(),
-							mytxtfdinfo[3].getText(), " ");
+					Contacts.ModifyContact(myinfo[0], myinfo[1], mytxtfdinfo[0].getText(), mytxtfdinfo[1].getText(),
+							mytxtfdinfo[2].getText(), mytxtfdinfo[3].getText(), myinfo[6]);
 					Contacts.changePnlScreen("Home");
 				}
-			}
-			else if (((JButton) e.getSource()).getText() == "Create") {
-					Contacts.AddContact(mytxtfdinfo[0].getText(), mytxtfdinfo[1].getText(), mytxtfdinfo[2].getText(),
-							mytxtfdinfo[3].getText(),"");
-					
-					for (int i = 0; i < mytxtfdinfo.length; i++) {
-						mytxtfdinfo[i].setEditable(false);
-						btnEdit.setText("Edit");
-					}
-			}
-			else if (((JButton) e.getSource()).getText() == "Back") {
+			} else if (((JButton) e.getSource()).getText() == "Create" && CheckFieldEmpty()) {
+
+				Contacts.AddContact(mytxtfdinfo[0].getText(), mytxtfdinfo[1].getText(), mytxtfdinfo[2].getText(),
+						mytxtfdinfo[3].getText(), myinfo[6]);
+				for (int i = 0; i < mytxtfdinfo.length; i++) {
+					mytxtfdinfo[i].setEditable(false);
+				}
+
+			} else if (((JButton) e.getSource()).getText() == "Back") {
 				Contacts.changePnlScreen("Home");
 			} else if (((JButton) e.getSource()).getText() == "Delete") {
 				Contacts.deleteContact(myinfo[0], myinfo[1]);
 				Contacts.delPnlScreen(Integer.parseInt(myinfo[0]));
 				Contacts.changePnlScreen("Home");
-				
+
 			}
 
 		}
